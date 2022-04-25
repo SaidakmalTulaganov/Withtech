@@ -14,7 +14,7 @@ class GasstoveController extends Controller
      */
     public function index()
     {
-        $products = Product::where('category_id', 8)->get();
+        $products = Product::where('category_id', 4)->get();
         // dd($basketProducts);
         return view('electricstove', compact('products'));
     }

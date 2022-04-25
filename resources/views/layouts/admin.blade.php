@@ -34,9 +34,9 @@
 
                     <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
                         <li><a href="/home" class="nav-link px-2 text-secondary">WITHTECH</a></li>
-                        <li><a href="{{ route('basketProducts.index') }}"
-                                class="nav-link px-2 text-secondary">Корзина</a></li>
-                        <li><a href="/about" class="nav-link px-2 text-secondary">Контакты</a></li>
+                        {{-- <li><a href="{{ route('basketProducts.index') }}"
+                                class="nav-link px-2 text-secondary">Корзина</a></li> --}}
+                        {{-- <li><a href="/about" class="nav-link px-2 text-secondary">Контакты</a></li> --}}
                     </ul>
 
                     <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
@@ -75,11 +75,11 @@
 
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="" onclick="event.preventDefault();
-                                                        document.getElementById('').submit();">
+                                                                        document.getElementById('').submit();">
                                         {{ __('Мой профиль') }}
                                     </a>
                                     <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                                        document.getElementById('logout-form').submit();">
+                                                                        document.getElementById('logout-form').submit();">
                                         {{ __('Выйти') }}
                                     </a>
 
@@ -100,29 +100,51 @@
 
     <!-------------------------------    SIDEBAR        ------------------------------->
 
-    {{-- <div class="d-flex flex-column flex-shrink-0 p-3 bg-white shadow-sm" style="width: 280px;">
-        <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
+    <div class="d-flex flex-column flex-shrink-0 p-3 bg-white shadow-sm" style="width: 280px;">
+        {{-- <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
             <svg class="bi me-2" width="40" height="32">
                 <use xlink:href="#bootstrap"></use>
             </svg>
             <span class="fs-4">wadad</span>
-        </a>
+        </a> --}}
         <ul class="nav nav-pills flex-column mb-auto">
+            {{-- <li class="nav-item">
+                <form action="{{ route('categories.store') }}" method="POST">
+                    @csrf
+                    <button class="nav-link px-2 text-secondary" aria-current="page">
+                        <svg class="bi me-2" width="16" height="16">
+                            <use xlink:href="#home"></use>
+                        </svg>
+                        Категории товаров
+                    </button>
+                </form>
+            </li>
+            <li>
+                <form action="{{ route('manufacturers.store') }}" method="POST">
+                    @csrf
+                    <button class="nav-link px-2 text-secondary" aria-current="page">
+                        <svg class="bi me-2" width="16" height="16">
+                            <use xlink:href="#home"></use>
+                        </svg>
+                        Прозводители товаров
+                    </button>
+                </form>
+            </li> --}}
             <li class="nav-item">
-                <a href="{{ route('washingmachines.index') }}" class="nav-link px-2 text-secondary"
+                <a href="{{ route('categories.index') }}" class="nav-link px-2 text-secondary"
                     aria-current="page">
                     <svg class="bi me-2" width="16" height="16">
                         <use xlink:href="#home"></use>
                     </svg>
-                    Стиральные машины
+                    Категории товаров
                 </a>
             </li>
             <li>
-                <a href="{{ route('electricstoves.index') }}" class="nav-link px-2 text-secondary">
+                <a href="{{ route('manufacturers.index') }}" class="nav-link px-2 text-secondary">
                     <svg class="bi me-2" width="16" height="16">
                         <use xlink:href="#speedometer2"></use>
                     </svg>
-                    Электрические плиты
+                    Прозводители товаров
                 </a>
             </li>
             <li>
@@ -130,35 +152,11 @@
                     <svg class="bi me-2" width="16" height="16">
                         <use xlink:href="#table"></use>
                     </svg>
-                    Газовые плиты
-                </a>
-            </li>
-            <li>
-                <a href="{{ route('tvs.index') }}" class="nav-link px-2 text-secondary">
-                    <svg class="bi me-2" width="16" height="16">
-                        <use xlink:href="#grid"></use>
-                    </svg>
-                    Телевизоры
-                </a>
-            </li>
-            <li>
-                <a href="{{ route('households.index') }}" class="nav-link px-2 text-secondary">
-                    <svg class="bi me-2" width="16" height="16">
-                        <use xlink:href="#people-circle"></use>
-                    </svg>
-                    Холодильники
-                </a>
-            </li>
-            <li>
-                <a href="{{ route('dishwashers.index') }}" class="nav-link px-2 text-secondary">
-                    <svg class="bi me-2" width="16" height="16">
-                        <use xlink:href="#people-circle"></use>
-                    </svg>
-                    Посудомоечные машины
+                    Данные о товарах
                 </a>
             </li>
         </ul>
-    </div> --}}
+    </div>
     <main class="py-4">
         @yield('content')
     </main>

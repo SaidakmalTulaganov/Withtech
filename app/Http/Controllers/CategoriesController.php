@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Product;
 use Illuminate\Http\Request;
+use App\Models\Category;
+use App\Models\Product;
 
-class WashingmachineController extends Controller
+class CategoriesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,9 +15,8 @@ class WashingmachineController extends Controller
      */
     public function index()
     {
-        $products = Product::where('category_id', 1)->get();
-        // dd($basketProducts);
-        return view('washingmachine', compact('products'));
+        $categories = Category::get();
+        return view('category', compact('categories'));
     }
 
     /**
@@ -48,7 +48,8 @@ class WashingmachineController extends Controller
      */
     public function show($id)
     {
-        //
+        $products = Product::where('category_id', $id)->get();
+        return view('productadmin', compact('products'));
     }
 
     /**

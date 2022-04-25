@@ -13,6 +13,8 @@ use App\Http\Controllers\WashingmachineController;
 use App\Http\Controllers\ElectricstoveController;
 use App\Http\Controllers\GasstoveController;
 use App\Http\Controllers\DishwasherController;
+use App\Http\Controllers\CategoriesController;
+use App\Http\Controllers\ManufacturersController;
 
 /*
 |--------------------------------------------------------------------------
@@ -81,4 +83,12 @@ Route::resources([
 
 Route::resources([
     'dishwashers' => DishwasherController::class,
+]);
+
+Route::resources([
+    'categories' => CategoriesController::class,
+]);
+
+Route::resources([
+    'manufacturers' => ManufacturersController::class,
 ]);

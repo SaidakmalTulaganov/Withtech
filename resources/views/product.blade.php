@@ -24,7 +24,7 @@
                         <div class="js--ProductHeader__count-selector-container ProductHeader__count-selector-container">
                             <div id=""
                                 class="ProductHeader__count-selector js--ProductHeader__count-selector CountSelector js--CountSelector">
-                                <form action="{{ route('products.store', $products->id) }}" method="POST">
+                                <form action="{{ route('products.store') }}" method="POST">
                                     @csrf
                                     <div class="row mb-0">
                                         <div class="col-md-6 offset-md-4">

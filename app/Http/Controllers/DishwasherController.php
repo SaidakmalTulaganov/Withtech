@@ -14,7 +14,7 @@ class DishwasherController extends Controller
      */
     public function index()
     {
-        $products = Product::where('category_id', 9)->get();
+        $products = Product::where('category_id', 6)->get();
         // dd($basketProducts);
         return view('dishwasher', compact('products'));
     }

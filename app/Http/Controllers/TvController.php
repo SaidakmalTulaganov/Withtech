@@ -14,7 +14,7 @@ class TvController extends Controller
      */
     public function index()
     {
-        $products = Product::where('category_id', 4)->get();
+        $products = Product::where('category_id', 2)->get();
         // dd($basketProducts);
         return view('tv', compact('products'));
     }
