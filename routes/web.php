@@ -15,6 +15,7 @@ use App\Http\Controllers\GasstoveController;
 use App\Http\Controllers\DishwasherController;
 use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\ManufacturersController;
+use App\Http\Controllers\ProductAdminController;
 
 /*
 |--------------------------------------------------------------------------
@@ -91,4 +92,8 @@ Route::resources([
 
 Route::resources([
     'manufacturers' => ManufacturersController::class,
+]);
+
+Route::resources([
+    'productsadmin' => ProductAdminController::class,
 ]);

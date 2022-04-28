@@ -1,8 +1,3 @@
-{{-- @if (auth()->user()->is_admin)
-    @include('layouts.admin')
-@elseif (auth()->user()->is_user)
-    @include('layouts.app')
-@endif --}}
 @can('client')
     @include('layouts.app')
 
@@ -60,48 +55,7 @@
 @can('admin')
     @include('layouts.admin')
 
-    
-    {{-- <div class="row mb-3">
-        <label for="name" class="col-md-4 col-form-label text-md-end">{{ __('Название категории') }}</label>
-
-        <div class="col-md-6">
-            <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
-
-            @error('name')
-                <span class="invalid-feedback" role="alert">
-                    <strong>{{ $message }}</strong>
-                </span>
-            @enderror
-        </div>
-    </div> --}}
-@endcan
-{{-- @extends('layouts.app')
-
-@section('content')
-    <style>
-        aside {
-            /* width: 280px; */
-            float: right;
-        }
-
-        article {
-            margin-right: 240px;
-            display: block;
-        }
-
-    </style>
-    <aside>
-        <div class="d-flex flex-column flex-shrink-0 p-3 bg-white shadow-sm">
-            <div class="row mb-0">
-                <h3><b>Итого: {{ $price }} ₽</b>
-                </h3>
-                <a href="{{ route('home.show', $product->id) }}" class="btn btn-primary">
-                    {{ __('по цене') }}
-                </a>
-            </div>
-        </div>
-    </aside>
-    <div class="container">
+    {{-- <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
@@ -125,5 +79,5 @@
                 </div>
             </div>
         </div>
-    </div>
-@endsection --}}
+    </div> --}}
+@endcan

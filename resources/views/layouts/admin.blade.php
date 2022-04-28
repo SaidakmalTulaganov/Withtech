@@ -33,7 +33,7 @@
                     </a> --}}
 
                     <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-                        <li><a href="/home" class="nav-link px-2 text-secondary">WITHTECH</a></li>
+                        <li><a href="/home" class="nav-link px-2 text-secondary">WITHTECH ADMIN</a></li>
                         {{-- <li><a href="{{ route('basketProducts.index') }}"
                                 class="nav-link px-2 text-secondary">Корзина</a></li> --}}
                         {{-- <li><a href="/about" class="nav-link px-2 text-secondary">Контакты</a></li> --}}
@@ -75,11 +75,12 @@
 
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="" onclick="event.preventDefault();
-                                                                        document.getElementById('').submit();">
+                                                                                document.getElementById('').submit();">
                                         {{ __('Мой профиль') }}
                                     </a>
-                                    <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                                                        document.getElementById('logout-form').submit();">
+                                    <a class="dropdown-item" href="{{ route('logout') }}"
+                                        onclick="event.preventDefault();
+                                                                                document.getElementById('logout-form').submit();">
                                         {{ __('Выйти') }}
                                     </a>
 
@@ -108,31 +109,8 @@
             <span class="fs-4">wadad</span>
         </a> --}}
         <ul class="nav nav-pills flex-column mb-auto">
-            {{-- <li class="nav-item">
-                <form action="{{ route('categories.store') }}" method="POST">
-                    @csrf
-                    <button class="nav-link px-2 text-secondary" aria-current="page">
-                        <svg class="bi me-2" width="16" height="16">
-                            <use xlink:href="#home"></use>
-                        </svg>
-                        Категории товаров
-                    </button>
-                </form>
-            </li>
-            <li>
-                <form action="{{ route('manufacturers.store') }}" method="POST">
-                    @csrf
-                    <button class="nav-link px-2 text-secondary" aria-current="page">
-                        <svg class="bi me-2" width="16" height="16">
-                            <use xlink:href="#home"></use>
-                        </svg>
-                        Прозводители товаров
-                    </button>
-                </form>
-            </li> --}}
             <li class="nav-item">
-                <a href="{{ route('categories.index') }}" class="nav-link px-2 text-secondary"
-                    aria-current="page">
+                <a href="{{ route('categories.index') }}" class="nav-link px-2 text-secondary" aria-current="page">
                     <svg class="bi me-2" width="16" height="16">
                         <use xlink:href="#home"></use>
                     </svg>
@@ -148,7 +126,7 @@
                 </a>
             </li>
             <li>
-                <a href="{{ route('gasstoves.index') }}" class="nav-link px-2 text-secondary">
+                <a href="{{ route('productsadmin.index') }}" class="nav-link px-2 text-secondary">
                     <svg class="bi me-2" width="16" height="16">
                         <use xlink:href="#table"></use>
                     </svg>

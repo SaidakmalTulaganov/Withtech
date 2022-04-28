@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Manufacturer;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
-class ManufacturersController extends Controller
+class ProductAdminController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +14,8 @@ class ManufacturersController extends Controller
      */
     public function index()
     {
-        $manufacturers = Manufacturer::get();
-        return view('manufacturer', compact('manufacturers'));
+        $products = Product::get();
+        return view('productadmin', compact('products'));
     }
 
     /**
@@ -37,15 +36,7 @@ class ManufacturersController extends Controller
      */
     public function store(Request $request)
     {
-        $newManufacturers = Manufacturer::create([
-            'manufacturer_name' => $request->input('name'),
-        ]);
-
-        if ($newManufacturers) {
-            return redirect()->route('manufacturers.index')->with('success', 'Заказ успешно оформлен');
-        } else {
-            return redirect()->route('manufacturers.index')->with('fail', 'Что-то пошло не так');
-        }
+        //
     }
 
     /**
@@ -56,8 +47,7 @@ class ManufacturersController extends Controller
      */
     public function show($id)
     {
-        $products = Product::where('manufacturer_id', $id)->get();
-        return view('productadmin', compact('products'));
+        //
     }
 
     /**
@@ -91,7 +81,6 @@ class ManufacturersController extends Controller
      */
     public function destroy($id)
     {
-        $delete = Manufacturer::where('id', $id)->delete();
-        return redirect()->route('manufacturers.index')->with('success', 'Данные успешно удалены');
+        //
     }
 }

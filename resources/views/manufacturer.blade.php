@@ -1,14 +1,72 @@
 @can('admin')
     @include('layouts.admin')
 @endcan
+<style>
+    aside {
+        /* width: 280px; */
+        float: right;
+    }
 
+    article {
+        margin-right: 240px;
+        display: block;
+    }
+
+</style>
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
+            <form method="POST" action="{{ route('manufacturers.store') }}">
+                @csrf
+                <div class="row mb-3">
+                    <label for="name" class="col-md-4 col-form-label text-md-end">{{ __('Производитель') }}</label>
+
+                    <div class="col-md-6">
+                        <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name"
+                            value="{{ old('name') }}" required autocomplete="name" autofocus>
+
+                        @error('name')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                    </div>
+                </div>
+                <div class="row mb-0">
+                    <div class="col-md-6 offset-md-4">
+                        <button type="submit" class="btn btn-primary">
+                            {{ __('Добавить') }}
+                        </button>
+                    </div>
+                </div>
+            </form>
             <div class="card">
                 @foreach ($manufacturers as $manufacturer)
                     <div class="card-header"><a
                             href="{{ route('manufacturers.show', $manufacturer->id) }}">{{ $manufacturer->manufacturer_name }}</a>
+                        <aside>
+                            <div class="d-flex flex-column flex-shrink-0">
+                                <div class="row mb-0">
+                                    <form action="{{ route('manufacturers.destroy', $manufacturer->id) }}"
+                                        method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                        {{-- <a href="{{ route('basketProducts.store', $basketProduct->product_id) }}"
+                                                class="btn btn-primary bg-white shadow-sm text-secondary">
+                                                {{ __('-') }}
+                                            </a>
+                                            {{ $basketProduct->quantity }}
+                                            <a href="{{ route('basketProducts.store', $basketProduct->product_id) }}"
+                                                class="btn btn-primary bg-white shadow-sm text-secondary">
+                                                {{ __('+') }}
+                                            </a> --}}
+                                        <button class="btn btn-primary">
+                                            {{ __('Удалить') }}
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+                        </aside>
                     </div>
                     <div class="card-body">
                         @if (session('status'))
@@ -16,13 +74,6 @@
                                 {{ session('status') }}
                             </div>
                         @endif
-                        {{-- <img src="{{ asset($product->product_image) }}" class="img-thumbnail" width="150px">
-                        <a href="{{ route('products.show', $product->id) }}">{{ $product->description }}</a>
-                        <ul class="list-unstyled mt-3 mb-4">
-                            <li>
-                                <h3><b>{{ $product->product_price }} ₽</b></h3>
-                            </li>
-                        </ul> --}}
                     </div>
                 @endforeach
             </div>

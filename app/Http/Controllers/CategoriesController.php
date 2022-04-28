@@ -37,7 +37,15 @@ class CategoriesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $newCategories = Category::create([
+            'category_name' => $request->input('name'),
+        ]);
+
+        if ($newCategories) {
+            return redirect()->route('categories.index')->with('success', 'Заказ успешно оформлен');
+        } else {
+            return redirect()->route('categories.index')->with('fail', 'Что-то пошло не так');
+        }
     }
 
     /**
@@ -83,6 +91,7 @@ class CategoriesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $delete = Category::where('id', $id)->delete();
+        return redirect()->route('categories.index')->with('success', 'Данные успешно удалены');
     }
 }
