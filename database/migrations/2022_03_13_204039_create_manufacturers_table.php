@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('manufacturers', function (Blueprint $table) {
             $table->id('id');
-            $table->string('manufacturer_name', 50);
+            $table->string('manufacturer_name', 50)->unique();
         });
     }
 

@@ -20,8 +20,6 @@ return new class extends Migration
             $table->foreignId('shipment_id')->references('id')->on('shipments');
             $table->string('product_title', 50);
             $table->text('description')->nullable();
-            $table->integer('count');
-            $table->integer('product_price');
             $table->string('product_image', 100);
         });
     }

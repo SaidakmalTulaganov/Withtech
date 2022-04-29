@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('user_types', function (Blueprint $table) {
             $table->id('id');
-            $table->string('type_title', 50);
+            $table->string('type_title', 50)->unique();
         });
     }
 

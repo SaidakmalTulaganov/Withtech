@@ -16,6 +16,8 @@ return new class extends Migration
         Schema::create('shipments', function (Blueprint $table) {
             $table->id();
             $table->foreignId('supplier_id')->references('id')->on('suppliers');
+            $table->integer('price');
+            $table->integer('count');
             $table->dateTime('datetime');
         });
     }

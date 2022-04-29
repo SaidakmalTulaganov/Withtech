@@ -18,9 +18,9 @@ return new class extends Migration
             $table->foreignId('type_id')->references('id')->on('user_types');
             $table->string('name', 50);
             $table->string('surname', 50);
-            $table->string('email', 100);
-            $table->string('password');
-            $table->string('phone', 12);
+            $table->string('email', 100)->unique();
+            $table->string('password')->unique();
+            $table->string('phone', 12)->unique();
         });
     }
 
