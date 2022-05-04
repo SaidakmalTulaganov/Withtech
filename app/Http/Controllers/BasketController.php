@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\BasketProduct;
 use App\Models\Product;
+use App\Models\Shipment;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
@@ -84,9 +85,10 @@ class BasketController extends Controller
      */
     public function destroy($id)
     {
-        $count = Product::where('id', $id)->value('count');
+        $shipment_id = Product::where('id', $id)->value('shipment_id');
+        $count = Shipment::where('id', $shipment_id)->value('count');
         $quantity = BasketProduct::where('product_id', $id)->value('quantity');
-        $updatedcount = Product::find($id)->update([
+        $updatedcount = Shipment::find($shipment_id)->update([
             'count' => $count + $quantity,
         ]);
         $delete = BasketProduct::where('user_id', Auth::id())->where('product_id', $id)->delete();

@@ -41,7 +41,7 @@
                             <a href="{{ route('products.show', $product->id) }}">{{ $product->description }}</a>
                             <ul class="list-unstyled mt-3 mb-4">
                                 <li>
-                                    <h3><b>{{ $product->product_price }} ₽</b></h3>
+                                    <h3><b>{{ $product->shipment->price}} ₽</b></h3>
                                 </li>
                             </ul>
                         </div>

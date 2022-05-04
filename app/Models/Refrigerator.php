@@ -8,4 +8,24 @@ use Illuminate\Database\Eloquent\Model;
 class Refrigerator extends Model
 {
     use HasFactory;
+
+    public function product()
+    {
+        return $this->belongsTo(Product::class, 'product_id', 'id');
+    }
+
+    public $timestamps = false;
+
+    protected $fillable = [
+        'product_id',
+        'cameras',
+        'freezer_location',
+        'doors',
+        'volume(l)',
+        'noise_level(dB)',
+        'shelves',
+        'color',
+        'weight(kg)',
+        'warranty(m)',
+    ];
 }

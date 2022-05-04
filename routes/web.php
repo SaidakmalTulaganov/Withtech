@@ -16,6 +16,8 @@ use App\Http\Controllers\DishwasherController;
 use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\ManufacturersController;
 use App\Http\Controllers\ProductAdminController;
+use App\Http\Controllers\ShipmentController;
+use App\Http\Controllers\SupplierController;
 
 /*
 |--------------------------------------------------------------------------
@@ -96,4 +98,12 @@ Route::resources([
 
 Route::resources([
     'productsadmin' => ProductAdminController::class,
+]);
+
+Route::resources([
+    'suppliers' => SupplierController::class,
+]);
+
+Route::resources([
+    'shipments' => ShipmentController::class,
 ]);

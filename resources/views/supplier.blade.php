@@ -16,16 +16,16 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <form method="POST" action="{{ route('categories.store') }}">
+            <form method="POST" action="{{ route('suppliers.store') }}">
                 @csrf
                 <div class="row mb-3">
-                    <label for="name"
-                        class="col-md-4 col-form-label text-md-end">{{ __('Название категории') }}</label>
+                    <label for="name" class="col-md-4 col-form-label text-md-end">{{ __('Поставщик') }}</label>
 
                     <div class="col-md-6">
-                        <input id="category_name" type="text"
-                            class="form-control @error('category_name') is-invalid @enderror" name="category_name"
-                            value="{{ old('category_name') }}" autocomplete="category_name" autofocus>
+                        <input id="supplier_title" type="text"
+                            class="form-control @error('supplier_title') is-invalid @enderror" name="supplier_title"
+                            value="{{ old('supplier_title') }}" autocomplete="supplier_title" autofocus>
+
                         @if ($errors->any())
                             <div class="alert alert-danger">
                                 <ul>
@@ -46,13 +46,13 @@
                 </div>
             </form>
             <div class="card">
-                @foreach ($categories as $category)
-                    <div class="card-header"><a
-                            href="{{ route('categories.show', $category->id) }}">{{ $category->category_name }}</a>
+                @foreach ($suppliers as $supplier)
+                    <div class="card-header">{{ $supplier->supplier_title }}
+                        {{-- <a href="{{ route('categories.show', $supplier->id) }}">{{ $supplier->supplier_title }}</a> --}}
                         <aside>
                             <div class="d-flex flex-column flex-shrink-0">
                                 <div class="row mb-0">
-                                    <form action="{{ route('categories.destroy', $category->id) }}" method="POST">
+                                    <form action="{{ route('suppliers.destroy', $supplier->id) }}" method="POST">
                                         @csrf
                                         @method('DELETE')
                                         {{-- <a href="{{ route('basketProducts.store', $basketProduct->product_id) }}"

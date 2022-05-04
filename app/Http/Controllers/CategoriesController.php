@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Models\Product;
+use Illuminate\Support\Facades\Validator;
 
 class CategoriesController extends Controller
 {
@@ -37,16 +38,22 @@ class CategoriesController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'category_name' => ['required', 'string', 'max:50', 'unique:categories'],
+        ]);
         $newCategories = Category::create([
-            'category_name' => $request->input('name'),
+            'category_name' => $request->input('category_name'),
         ]);
 
         if ($newCategories) {
             return redirect()->route('categories.index')->with('success', 'Заказ успешно оформлен');
         } else {
-            return redirect()->route('categories.index')->with('fail', 'Что-то пошло не так');
+            return redirect()->route('categories.index');
         }
     }
+
+
+
 
     /**
      * Display the specified resource.
@@ -57,7 +64,7 @@ class CategoriesController extends Controller
     public function show($id)
     {
         $products = Product::where('category_id', $id)->get();
-        return view('productadmin', compact('products'));
+        return view('product', compact('products'));
     }
 
     /**

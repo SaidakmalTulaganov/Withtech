@@ -1,7 +1,7 @@
 @extends('layouts.app')
 <?php $price = 0; ?>
 @foreach ($basketProducts as $basketProduct)
-    <?php $price = $basketProduct->product->product_price * $basketProduct->quantity + $price; ?>
+    <?php $price = $basketProduct->product->shipment->price * $basketProduct->quantity + $price; ?>
 @endforeach
 
 @section('content')
@@ -69,7 +69,7 @@
                                 href="{{ route('products.show', $basketProduct->product->id ?? '') }}">{{ $basketProduct->product->description ?? '' }}</a>
                             <ul class="list-unstyled mt-3 mb-4">
                                 <li>
-                                    <h3><b>{{ $basketProduct->product->product_price * $basketProduct->quantity }}
+                                    <h3><b>{{ $basketProduct->product->shipment->price * $basketProduct->quantity }}
                                             ₽</b>
                                     </h3>
                                 </li>

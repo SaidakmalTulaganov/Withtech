@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\BasketProduct;
 use Illuminate\Http\Request;
 use App\Models\Product;
+use App\Models\Shipment;
 use Illuminate\Routing\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -40,10 +41,8 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         //dd($request->input());
-        $request->validate([
-            // 'name' => 'required|unique:positions'
-        ]);
-        $count = Product::where('id', $request->input('productId'))->value('count');
+        //$count = Product::where('id', $request->input('productId'))->value('count');
+        $count = Shipment::where('id', $request->input('shipment_id'))->value('count');
         $present = BasketProduct::where('user_id', Auth::id())->where('product_id', $request->input('productId'))->value('id');
         if ($count > $request->input('quantity')) {
             if ($present == null) {
@@ -52,7 +51,10 @@ class ProductController extends Controller
                     'product_id' => $request->input('productId'),
                     'quantity' => $request->input('quantity'),
                 ]);
-                $updatedcount = Product::find($request->input('productId'))->update([
+                // $updatedcount = Product::find($request->input('productId'))->update([
+                //     'count' => $request->input('count') - $request->input('quantity'),
+                // ]);
+                $updatedcount = Shipment::find($request->input('shipment_id'))->update([
                     'count' => $request->input('count') - $request->input('quantity'),
                 ]);
                 if ($newPositions) {
@@ -66,7 +68,10 @@ class ProductController extends Controller
                     'quantity' => $quantitynow + $request->input('quantity'),
 
                 ]);
-                $updatedcount = Product::find($request->input('productId'))->update([
+                // $updatedcount = Product::find($request->input('productId'))->update([
+                //     'count' => $request->input('count') - $request->input('quantity'),
+                // ]);
+                $updatedcount = Shipment::find($request->input('shipment_id'))->update([
                     'count' => $request->input('count') - $request->input('quantity'),
                 ]);
                 if ($updatedquantity) {

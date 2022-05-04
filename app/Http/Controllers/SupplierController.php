@@ -2,19 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
-use App\Providers\RouteServiceProvider;
-use App\Models\User;
-use App\Models\Order;
-use Illuminate\Foundation\Auth\RegistersUsers;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Validator;
-use App\Models\BasketProduct;
-use App\Models\Product;
+use App\Models\Supplier;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
-class OrderController extends Controller
+class SupplierController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -23,7 +14,8 @@ class OrderController extends Controller
      */
     public function index()
     {
-        return view('order');
+        $suppliers = Supplier::get();
+        return view('supplier', compact('suppliers'));
     }
 
     /**
@@ -44,22 +36,17 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
-        //dd($request->input());
-        $newOrders = Order::create([
-            'user_id' => Auth::id(),
-            'order_datetime' => now(),
-            'order_status' => 'Новый',
-            'payment_type' => $request->input('paymentType'),
-            'delivery_address' => $request->input('delivery_address'),
-            'order_price' => $request->input('orderPrice'),
+        $request->validate([
+            'supplier_title' => ['required', 'string', 'max:50', 'unique:suppliers'],
+        ]);
+        $newSuppliers = Supplier::create([
+            'supplier_title' => $request->input('supplier_title'),
         ]);
 
-        $delete = BasketProduct::where('user_id', Auth::id())->delete();
-
-        if ($newOrders) {
-            return redirect()->route('home')->with('success', 'Заказ успешно оформлен');
+        if ($newSuppliers) {
+            return redirect()->route('suppliers.index')->with('success', 'Заказ успешно оформлен');
         } else {
-            return redirect()->route('home')->with('fail', 'Что-то пошло не так');
+            return redirect()->route('suppliers.index');
         }
     }
 
@@ -105,19 +92,7 @@ class OrderController extends Controller
      */
     public function destroy($id)
     {
-        //
-    }
-
-    /**
-     * Get a validator for an incoming registration request.
-     *
-     * @param  array  $data
-     * @return \Illuminate\Contracts\Validation\Validator
-     */
-    protected function validator(array $data)
-    {
-        return Validator::make($data, [
-            'delivery_address' => ['required', 'string'],
-        ]);
+        $delete = Supplier::where('id', $id)->delete();
+        return redirect()->route('suppliers.index')->with('success', 'Данные успешно удалены');
     }
 }

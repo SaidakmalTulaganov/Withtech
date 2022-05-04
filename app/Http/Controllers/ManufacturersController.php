@@ -37,8 +37,12 @@ class ManufacturersController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'manufacturer_name' => ['required', 'string', 'max:50', 'unique:manufacturers'],
+        ]);
+
         $newManufacturers = Manufacturer::create([
-            'manufacturer_name' => $request->input('name'),
+            'manufacturer_name' => $request->input('manufacturer_name'),
         ]);
 
         if ($newManufacturers) {

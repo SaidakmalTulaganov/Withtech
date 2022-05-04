@@ -74,13 +74,14 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="" onclick="event.preventDefault();
-                                                                                document.getElementById('').submit();">
+                                    <a class="dropdown-item" href=""
+                                        onclick="event.preventDefault();
+                                                                                                document.getElementById('').submit();">
                                         {{ __('Мой профиль') }}
                                     </a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                         onclick="event.preventDefault();
-                                                                                document.getElementById('logout-form').submit();">
+                                                                                                document.getElementById('logout-form').submit();">
                                         {{ __('Выйти') }}
                                     </a>
 
@@ -123,6 +124,30 @@
                         <use xlink:href="#speedometer2"></use>
                     </svg>
                     Прозводители товаров
+                </a>
+            </li>
+            <li>
+                <a href="{{ route('suppliers.index') }}" class="nav-link px-2 text-secondary">
+                    <svg class="bi me-2" width="16" height="16">
+                        <use xlink:href="#table"></use>
+                    </svg>
+                    Поставщики
+                </a>
+            </li>
+            <li>
+                <a href="{{ route('shipments.index') }}" class="nav-link px-2 text-secondary">
+                    <svg class="bi me-2" width="16" height="16">
+                        <use xlink:href="#table"></use>
+                    </svg>
+                    Партии товаров
+                </a>
+            </li>
+            <li>
+                <a href="{{ route('orders.index') }}" class="nav-link px-2 text-secondary">
+                    <svg class="bi me-2" width="16" height="16">
+                        <use xlink:href="#table"></use>
+                    </svg>
+                    Заказы
                 </a>
             </li>
             <li>
