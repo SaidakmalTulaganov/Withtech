@@ -18,14 +18,14 @@ class Microwave extends Model
 
     protected $fillable = [
         'product_id',
-        'volume(l)',
-        'power(Wt)',
+        'volume',
+        'power',
         'control_type',
         'door_opening',
         'inner_lining',
-        'turntable_diameter(mm)',
+        'turntable_diameter',
         'color',
-        'weight(kg)',
-        'warranty(m)',
+        'weight',
+        'warranty',
     ];
 }

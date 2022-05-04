@@ -17,13 +17,13 @@ return new class extends Migration
             $table->id();
             $table->foreignId('product_id')->references('id')->on('products');
             $table->string('cleaning_type');
-            $table->decimal('container_volume(l)');
-            $table->integer('power(Wt)');
+            $table->decimal('container_volume');
+            $table->integer('power');
             $table->integer('cord_length');
             $table->string('nozzles_included');
             $table->string('color', 50);
-            $table->decimal('weight(kg)');
-            $table->integer('warranty(m)');
+            $table->decimal('weight');
+            $table->integer('warranty');
         });
     }
 

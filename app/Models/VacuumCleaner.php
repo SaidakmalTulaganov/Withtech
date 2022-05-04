@@ -19,12 +19,12 @@ class VacuumCleaner extends Model
     protected $fillable = [
         'product_id',
         'cleaning_type',
-        'container_volume(l)',
-        'power(Wt)',
+        'container_volume',
+        'power',
         'cord_length',
         'nozzles_included',
         'color',
-        'weight(kg)',
-        'warranty(m)',
+        'weight',
+        'warranty',
     ];
 }

@@ -16,15 +16,15 @@ return new class extends Migration
         Schema::create('microwaves', function (Blueprint $table) {
             $table->id();
             $table->foreignId('product_id')->references('id')->on('products');
-            $table->integer('volume(l)');
-            $table->integer('power(Wt)');
+            $table->integer('volume');
+            $table->integer('power');
             $table->string('control_type', 50);
             $table->string('door_opening', 50);
             $table->string('inner_lining', 50);
-            $table->integer('turntable_diameter(mm)');
+            $table->integer('turntable_diameter');
             $table->string('color', 50);
-            $table->decimal('weight(kg)');
-            $table->integer('warranty(m)');
+            $table->decimal('weight');
+            $table->integer('warranty');
         });
     }
 

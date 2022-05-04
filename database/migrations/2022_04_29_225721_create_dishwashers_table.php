@@ -19,10 +19,10 @@ return new class extends Migration
             $table->string('dishwasher_type', 50);
             $table->integer('dishes_sets');
             $table->integer('washing_programs');
-            $table->integer('noise_level(dB)');
+            $table->integer('noise_level');
             $table->string('color', 50);
-            $table->decimal('weight(kg)');
-            $table->integer('warranty(m)');
+            $table->decimal('weight');
+            $table->integer('warranty');
         });
     }
 

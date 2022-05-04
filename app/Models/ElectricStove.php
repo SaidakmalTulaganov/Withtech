@@ -20,10 +20,10 @@ class ElectricStove extends Model
         'product_id',
         'surface',
         'hotplates',
-        'oven_volume(l)',
+        'oven_volume',
         'convection',
         'color',
-        'weight(kg)',
-        'warranty(m)',
+        'weight',
+        'warranty',
     ];
 }

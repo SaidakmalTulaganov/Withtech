@@ -16,13 +16,13 @@ return new class extends Migration
         Schema::create('flatirons', function (Blueprint $table) {
             $table->id();
             $table->foreignId('product_id')->references('id')->on('products');
-            $table->integer('power(Wt)');
+            $table->integer('power');
             $table->string('steam_function', 50);
-            $table->integer('water_tank(ml)');
+            $table->integer('water_tank');
             $table->string('iron_soleplate');
             $table->string('color', 50);
-            $table->decimal('weight(kg)');
-            $table->integer('warranty(m)');
+            $table->decimal('weight');
+            $table->integer('warranty');
         });
     }
 

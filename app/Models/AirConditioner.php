@@ -20,12 +20,12 @@ class AirConditioner extends Model
         'product_id',
         'operating_modes',
         'installation_type',
-        'cooling_capacity(kWt)',
-        'heating_capacity(kWt)',
-        'served_area(m2)',
-        'pipeline_length(m)',
+        'cooling_capacity',
+        'heating_capacity',
+        'served_area',
+        'pipeline_length',
         'color',
-        'weight(kg)',
-        'warranty(m)',
+        'weight',
+        'warranty',
     ];
 }

@@ -21,9 +21,9 @@ class Dishwasher extends Model
         'dishwasher_type',
         'dishes_sets',
         'washing_programs',
-        'noise_level(dB)',
+        'noise_level',
         'color',
-        'weight(kg)',
-        'warranty(m)',
+        'weight',
+        'warranty',
     ];
 }

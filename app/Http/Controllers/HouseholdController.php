@@ -14,9 +14,9 @@ class HouseholdController extends Controller
      */
     public function index()
     {
-        $products = Product::where('category_id', 5)->get();
+        $products = Product::where('category_id', 10)->get();
         // dd($basketProducts);
-        return view('household', compact('products'));
+        return view('home', compact('products'));
     }
 
     /**

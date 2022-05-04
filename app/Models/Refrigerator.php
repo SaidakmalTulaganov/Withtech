@@ -21,11 +21,11 @@ class Refrigerator extends Model
         'cameras',
         'freezer_location',
         'doors',
-        'volume(l)',
-        'noise_level(dB)',
+        'volume',
+        'noise_level',
         'shelves',
         'color',
-        'weight(kg)',
-        'warranty(m)',
+        'weight',
+        'warranty',
     ];
 }

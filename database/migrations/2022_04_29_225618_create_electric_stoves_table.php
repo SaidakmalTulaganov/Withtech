@@ -18,11 +18,11 @@ return new class extends Migration
             $table->foreignId('product_id')->references('id')->on('products');
             $table->string('surface', 50);
             $table->integer('hotplates');
-            $table->integer('oven_volume(l)');
+            $table->integer('oven_volume');
             $table->string('convection');
             $table->string('color', 50);
-            $table->decimal('weight(kg)');
-            $table->integer('warranty(m)');
+            $table->decimal('weight');
+            $table->integer('warranty');
         });
     }
 

@@ -19,15 +19,15 @@ return new class extends Migration
             $table->char('wash_class');
             $table->char('spin_class');
             $table->string('drum_material', 50);
-            $table->decimal('maximum_load(kg)');
-            $table->integer('spin_speed(rpm)');
-            $table->integer('water_consumption(l)');
-            $table->integer('drum_volume(l)');
+            $table->decimal('maximum_load');
+            $table->integer('spin_speed');
+            $table->integer('water_consumption');
+            $table->integer('drum_volume');
             $table->integer('number_programs');
             $table->text('programs');
             $table->string('color', 50);
-            $table->decimal('weight(kg)');
-            $table->integer('warranty(m)');
+            $table->decimal('weight');
+            $table->integer('warranty');
         });
     }
 

@@ -16,14 +16,14 @@ return new class extends Migration
         Schema::create('television_sets', function (Blueprint $table) {
             $table->id();
             $table->foreignId('product_id')->references('id')->on('products');
-            $table->decimal('diagonal(inch)');
+            $table->decimal('diagonal');
             $table->string('screen_resolution', 50);
             $table->string('screen_format', 50);
             $table->string('panel_type');
-            $table->integer('update_frequency(Hz)');
+            $table->integer('update_frequency');
             $table->string('color', 50);
-            $table->decimal('weight(kg)');
-            $table->integer('warranty(m)');
+            $table->decimal('weight');
+            $table->integer('warranty');
         });
     }
 

@@ -19,12 +19,12 @@ return new class extends Migration
             $table->string('cameras', 50);
             $table->string('freezer_location');
             $table->integer('doors');
-            $table->integer('volume(l)');
-            $table->integer('noise_level(dB)');
+            $table->integer('volume');
+            $table->integer('noise_level');
             $table->integer('shelves');
             $table->string('color', 50);
-            $table->decimal('weight(kg)');
-            $table->integer('warranty(m)');
+            $table->decimal('weight');
+            $table->integer('warranty');
         });
     }
 

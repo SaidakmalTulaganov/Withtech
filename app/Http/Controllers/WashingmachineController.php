@@ -14,9 +14,9 @@ class WashingmachineController extends Controller
      */
     public function index()
     {
-        $products = Product::where('category_id', 1)->get();
+        $products = Product::where('category_id', 11)->get();
         // dd($basketProducts);
-        return view('washingmachine', compact('products'));
+        return view('home', compact('products'));
     }
 
     /**

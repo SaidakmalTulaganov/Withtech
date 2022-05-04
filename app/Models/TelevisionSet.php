@@ -18,13 +18,13 @@ class TelevisionSet extends Model
 
     protected $fillable = [
         'product_id',
-        'diagonal(inch)',
+        'diagonal',
         'screen_resolution',
         'screen_format',
         'panel_type',
-        'update_frequency(Hz)',
+        'update_frequency',
         'color',
-        'weight(kg)',
-        'warranty(m)',
+        'weight',
+        'warranty',
     ];
 }

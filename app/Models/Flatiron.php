@@ -18,12 +18,12 @@ class Flatiron extends Model
 
     protected $fillable = [
         'product_id',
-        'power(Wt)',
+        'power',
         'steam_function',
-        'water_tank(ml)',
+        'water_tank',
         'iron_soleplate',
         'color',
-        'weight(kg)',
-        'warranty(m)',
+        'weight',
+        'warranty',
     ];
 }

@@ -18,13 +18,13 @@ return new class extends Migration
             $table->foreignId('product_id')->references('id')->on('products');
             $table->text('operating_modes');
             $table->string('installation_type', 50);
-            $table->decimal('cooling_capacity(kWt)');
-            $table->decimal('heating_capacity(kWt)');
-            $table->integer('served_area(m2)');
-            $table->integer('pipeline_length(m)');
+            $table->decimal('cooling_capacity');
+            $table->decimal('heating_capacity');
+            $table->integer('served_area');
+            $table->integer('pipeline_length');
             $table->string('color', 50);
-            $table->decimal('weight(kg)');
-            $table->integer('warranty(m)');
+            $table->decimal('weight');
+            $table->integer('warranty');
         });
     }
 
