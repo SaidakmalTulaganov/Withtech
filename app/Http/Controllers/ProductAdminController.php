@@ -84,7 +84,7 @@ class ProductAdminController extends Controller
         $category_id = Product::where('id', $id)->value('category_id');
         $category_name = Category::where('id', $category_id)->value('category_name');
         if ($category_name == 'Холодильники') {
-            $characteristics = Refrigerator::where('product_id', $id)->limit(1)->get();
+            $characteristics = Refrigerator::where('product_id', $id)->get();
             return view('refrigerator', compact('products', 'characteristics'));
         } elseif ($category_name == 'Стиральные машины') {
             $characteristics = Washer::where('product_id', $id)->get();

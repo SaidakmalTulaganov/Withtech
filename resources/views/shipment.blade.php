@@ -15,7 +15,7 @@
 </style>
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        {{-- <div class="col-md-8"> --}}
             <form method="POST" action="{{ route('shipments.store') }}">
                 @csrf
                 <div class="row mb-3">
@@ -85,17 +85,20 @@
                     </div>
                 </div>
             </form>
-            <div class="card">
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
                 @foreach ($shipments as $shipment)
-                    <div class="card-header">{{ $shipment->id }}
-                        {{-- <a href="{{ route('categories.show', $supplier->id) }}">{{ $supplier->supplier_title }}</a> --}}
-                        <aside>
-                            <div class="d-flex flex-column flex-shrink-0">
-                                <div class="row mb-0">
-                                    <form action="{{ route('shipments.destroy', $shipment->id) }}" method="POST">
-                                        @csrf
-                                        @method('DELETE')
-                                        {{-- <a href="{{ route('basketProducts.store', $basketProduct->product_id) }}"
+                    <div class="col">
+                        <div class="card">
+                            <div class="card-header">{{ $shipment->id }}
+                                {{-- <a href="{{ route('categories.show', $supplier->id) }}">{{ $supplier->supplier_title }}</a> --}}
+                                <aside>
+                                    <div class="d-flex flex-column flex-shrink-0">
+                                        <div class="row mb-0">
+                                            <form action="{{ route('shipments.destroy', $shipment->id) }}"
+                                                method="POST">
+                                                @csrf
+                                                @method('DELETE')
+                                                {{-- <a href="{{ route('basketProducts.store', $basketProduct->product_id) }}"
                                             class="btn btn-primary bg-white shadow-sm text-secondary">
                                             {{ __('-') }}
                                         </a>
@@ -104,23 +107,25 @@
                                             class="btn btn-primary bg-white shadow-sm text-secondary">
                                             {{ __('+') }}
                                         </a> --}}
-                                        <button class="btn btn-primary">
-                                            {{ __('Удалить') }}
-                                        </button>
-                                    </form>
-                                </div>
+                                                <button class="btn btn-primary">
+                                                    {{ __('Удалить') }}
+                                                </button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </aside>
                             </div>
-                        </aside>
-                    </div>
-                    <div class="card-body">
-                        @if (session('status'))
-                            <div class="alert alert-success" role="alert">
-                                {{ session('status') }}
+                            <div class="card-body">
+                                @if (session('status'))
+                                    <div class="alert alert-success" role="alert">
+                                        {{ session('status') }}
+                                    </div>
+                                @endif
                             </div>
-                        @endif
+                        </div>
                     </div>
                 @endforeach
             </div>
-        </div>
+        {{-- </div> --}}
     </div>
 </div>
