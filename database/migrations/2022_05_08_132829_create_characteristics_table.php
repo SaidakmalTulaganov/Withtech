@@ -13,16 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('flatirons', function (Blueprint $table) {
+        Schema::create('characteristics', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('set_id')->references('id')->on('feature_sets');
             $table->foreignId('product_id')->references('id')->on('products');
-            $table->integer('power');
-            $table->string('steam_function', 50);
-            $table->integer('water_tank');
-            $table->string('iron_soleplate');
-            $table->string('color', 50);
-            $table->decimal('weight');
-            $table->integer('warranty');
+            $table->integer('valueint')->nullable();
+            $table->string('valuestr')->nullable();
+            $table->decimal('valuedec')->nullable();
+            $table->dateTime('valuedate')->nullable();
         });
     }
 
@@ -33,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('flatirons');
+        Schema::dropIfExists('characteristics');
     }
 };

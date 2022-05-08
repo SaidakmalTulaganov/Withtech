@@ -15,7 +15,9 @@ return new class extends Migration
     {
         Schema::create('feature_sets', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->foreignId('category_id')->references('id')->on('categories');
+            $table->string('title', 50);
+            $table->string('type', 50);
         });
     }
 

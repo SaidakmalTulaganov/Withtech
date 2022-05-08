@@ -8,4 +8,17 @@ use Illuminate\Database\Eloquent\Model;
 class FeatureSet extends Model
 {
     use HasFactory;
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class, 'category_id', 'id');
+    }
+
+    public $timestamps = false;
+
+    protected $fillable = [
+        'category_id',
+        'title',
+        'type',
+    ];
 }

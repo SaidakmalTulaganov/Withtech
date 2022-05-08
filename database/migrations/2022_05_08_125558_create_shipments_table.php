@@ -13,18 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('refrigerators', function (Blueprint $table) {
+        Schema::create('shipments', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('supplier_id')->references('id')->on('suppliers');
             $table->foreignId('product_id')->references('id')->on('products');
-            $table->string('cameras', 50);
-            $table->string('freezer_location');
-            $table->integer('doors');
-            $table->integer('volume');
-            $table->integer('noise_level');
-            $table->integer('shelves');
-            $table->string('color', 50);
-            $table->decimal('weight');
-            $table->integer('warranty');
+            $table->integer('price');
+            $table->integer('count');
+            $table->dateTime('datetime');
         });
     }
 
@@ -35,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('refrigerators');
+        Schema::dropIfExists('shipments');
     }
 };

@@ -17,17 +17,12 @@ class Product extends Model
     {
         return $this->belongsTo(Manufacturer::class, 'manufacturer_id', 'id');
     }
-    public function shipment()
-    {
-        return $this->belongsTo(Shipment::class, 'shipment_id', 'id');
-    }
 
     public $timestamps = false;
 
     protected $fillable = [
         'category_id',
         'manufacturer_id',
-        'shipment_id',
         'product_title',
         'description',
         'product_image',

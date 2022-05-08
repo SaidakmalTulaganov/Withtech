@@ -17,8 +17,7 @@ return new class extends Migration
             $table->id('id');
             $table->foreignId('category_id')->references('id')->on('categories');
             $table->foreignId('manufacturer_id')->references('id')->on('manufacturers');
-            $table->foreignId('shipment_id')->references('id')->on('shipments');
-            $table->string('product_title', 50);
+            $table->string('product_title', 50)->unique();
             $table->text('description')->nullable();
             $table->string('product_image', 100);
         });
