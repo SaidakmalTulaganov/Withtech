@@ -16,14 +16,14 @@ class Shipment extends Model
 
     public function product()
     {
-        return $this->belongsTo(Product::class, 'products_id', 'id');
+        return $this->belongsTo(Product::class, 'product_id', 'id');
     }
 
     public $timestamps = false;
 
     protected $fillable = [
         'supplier_id',
-        'products_id',
+        'product_id',
         'price',
         'count',
         'datetime',

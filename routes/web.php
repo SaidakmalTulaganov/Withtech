@@ -14,8 +14,10 @@ use App\Http\Controllers\ElectricstoveController;
 use App\Http\Controllers\GasstoveController;
 use App\Http\Controllers\DishwasherController;
 use App\Http\Controllers\CategoriesController;
+use App\Http\Controllers\FeatureSetController;
 use App\Http\Controllers\ManufacturersController;
 use App\Http\Controllers\ProductAdminController;
+use App\Http\Controllers\ProductPageController;
 use App\Http\Controllers\ShipmentController;
 use App\Http\Controllers\SupplierController;
 
@@ -106,4 +108,12 @@ Route::resources([
 
 Route::resources([
     'shipments' => ShipmentController::class,
+]);
+
+Route::resources([
+    'featuresets' => FeatureSetController::class,
+]);
+
+Route::resources([
+    'productspages' => ProductPageController::class,
 ]);

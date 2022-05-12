@@ -76,12 +76,12 @@
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href=""
                                         onclick="event.preventDefault();
-                                                                                                document.getElementById('').submit();">
+                                                                                                        document.getElementById('').submit();">
                                         {{ __('Мой профиль') }}
                                     </a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                         onclick="event.preventDefault();
-                                                                                                document.getElementById('logout-form').submit();">
+                                                                                                        document.getElementById('logout-form').submit();">
                                         {{ __('Выйти') }}
                                     </a>
 
@@ -143,11 +143,11 @@
                 </a>
             </li>
             <li>
-                <a href="{{ route('orders.index') }}" class="nav-link px-2 text-secondary">
+                <a href="{{ route('featuresets.index') }}" class="nav-link px-2 text-secondary">
                     <svg class="bi me-2" width="16" height="16">
                         <use xlink:href="#table"></use>
                     </svg>
-                    Заказы
+                    Наборы характеристик
                 </a>
             </li>
             <li>
@@ -156,6 +156,14 @@
                         <use xlink:href="#table"></use>
                     </svg>
                     Данные о товарах
+                </a>
+            </li>
+            <li>
+                <a href="{{ route('orders.index') }}" class="nav-link px-2 text-secondary">
+                    <svg class="bi me-2" width="16" height="16">
+                        <use xlink:href="#table"></use>
+                    </svg>
+                    Заказы
                 </a>
             </li>
         </ul>

@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Product;
-use App\Models\Shipment;
-use App\Models\Supplier;
+use App\Models\Category;
+use App\Models\FeatureSet;
 use Illuminate\Http\Request;
 
-class ShipmentController extends Controller
+class FeatureSetController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,10 +15,9 @@ class ShipmentController extends Controller
      */
     public function index()
     {
-        $shipments = Shipment::get();
-        $suppliers = Supplier::get();
-        $products = Product::get();
-        return view('shipment', compact('shipments', 'suppliers', 'products'));
+        $sets = FeatureSet::get();
+        $categories = Category::get();
+        return view('featureset', compact('sets', 'categories'));
     }
 
     /**
@@ -40,23 +38,19 @@ class ShipmentController extends Controller
      */
     public function store(Request $request)
     {
-        //dd($request->input());
         $request->validate([
-            'price' => ['required', 'integer'],
-            'count' => ['required', 'integer'],
+            'title' => ['required', 'string', 'max:50', 'unique:feature_sets'],
         ]);
-        $newShipments = Shipment::create([
-            'supplier_id' => $request->input('supplier_id'),
-            'product_id' => $request->input('product_id'),
-            'price' => $request->input('price'),
-            'count' => $request->input('count'),
-            'datetime' => now(),
+        $newSets = FeatureSet::create([
+            'category_id' => $request->input('category_id'),
+            'title' => $request->input('title'),
+            'type' => $request->input('type'),
         ]);
 
-        if ($newShipments) {
-            return redirect()->route('shipments.index')->with('success', 'Заказ успешно оформлен');
+        if ($newSets) {
+            return redirect()->route('featuresets.index')->with('success', 'Заказ успешно оформлен');
         } else {
-            return redirect()->route('shipments.index');
+            return redirect()->route('featuresets.index');
         }
     }
 
@@ -102,7 +96,7 @@ class ShipmentController extends Controller
      */
     public function destroy($id)
     {
-        $delete = Shipment::where('id', $id)->delete();
-        return redirect()->route('shipments.index')->with('success', 'Данные успешно удалены');
+        $delete = FeatureSet::where('id', $id)->delete();
+        return redirect()->route('featuresets.index')->with('success', 'Данные успешно удалены');
     }
 }
