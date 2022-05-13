@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\BasketProduct;
+use App\Models\Characteristic;
+use App\Models\FeatureSet;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Shipment;
@@ -40,55 +42,6 @@ class ProductController extends Controller
 
     public function store(Request $request)
     {
-        //dd($request->input());
-        //$count = Product::where('id', $request->input('productId'))->value('count');
-        $count = Shipment::where('id', $request->input('shipment_id'))->value('count');
-        $present = BasketProduct::where('user_id', Auth::id())->where('product_id', $request->input('productId'))->value('id');
-        if ($count > $request->input('quantity')) {
-            if ($present == null) {
-                $newPositions = BasketProduct::create([
-                    'user_id' => $request->input('userId'),
-                    'product_id' => $request->input('productId'),
-                    'quantity' => $request->input('quantity'),
-                ]);
-                // $updatedcount = Product::find($request->input('productId'))->update([
-                //     'count' => $request->input('count') - $request->input('quantity'),
-                // ]);
-                $updatedcount = Shipment::find($request->input('shipment_id'))->update([
-                    'count' => $request->input('count') - $request->input('quantity'),
-                ]);
-                if ($newPositions) {
-                    return redirect()->route('products.show', $request->input('productId'))->with('success', 'Данные успешно добавлены');
-                } else {
-                    return redirect()->route('products.show', $request->input('productId'))->with('fail', 'Что-то пошло не так');
-                }
-            } else if ($present != null) {
-                $quantitynow = BasketProduct::where('id', $present)->value('quantity');
-                $updatedquantity = BasketProduct::find($present)->update([
-                    'quantity' => $quantitynow + $request->input('quantity'),
-
-                ]);
-                // $updatedcount = Product::find($request->input('productId'))->update([
-                //     'count' => $request->input('count') - $request->input('quantity'),
-                // ]);
-                $updatedcount = Shipment::find($request->input('shipment_id'))->update([
-                    'count' => $request->input('count') - $request->input('quantity'),
-                ]);
-                if ($updatedquantity) {
-                    return redirect()->route('products.show', $request->input('productId'))->with('success', 'Данные успешно добавлены');
-                } else {
-                    return redirect()->route('products.show', $request->input('productId'))->with('fail', 'Что-то пошло не так');
-                }
-            }
-        } else {
-            echo 'Столько пока нет в наличии';
-        }
-
-        // if ($newPositions) {
-        //     return redirect()->route('products.show', $request->input('productId'))->with('success', 'Данные успешно добавлены');
-        // } else {
-        //     return redirect()->route('products.show', $request->input('productId'))->with('fail', 'Что-то пошло не так');
-        // }
     }
 
     /**
@@ -99,9 +52,15 @@ class ProductController extends Controller
      */
     public function show($id, Request $request)
     {
-        $products = Product::find($id);
-        // dd($products);
-        return view('product', compact('products'));
+        // $products = Product::find($id);
+        // return view('product', compact('products'));
+        $shipments = Shipment::find($id);
+        $product_id = Shipment::where('id', $id)->value('product_id');
+        $products = Product::find($product_id);
+        $category_id = Product::where('id', $product_id)->value('category_id');
+        $sets = FeatureSet::where('category_id', $category_id)->get();
+        $characteristics = Characteristic::where('product_id', $product_id)->get();
+        return view('product', compact('products', 'shipments', 'sets', 'characteristics'));
     }
 
     /**

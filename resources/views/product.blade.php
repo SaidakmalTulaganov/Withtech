@@ -19,13 +19,13 @@
                         <h3>{{ $products->description }}</h3>
                         <ul class="list-unstyled mt-3 mb-4">
                             <li>
-                                <h3><b>{{ $products->shipment->price }} ₽</b></h3>
+                                <h3><b>{{ $shipments->price }} ₽</b></h3>
                             </li>
                         </ul>
                         <div class="js--ProductHeader__count-selector-container ProductHeader__count-selector-container">
                             <div id=""
                                 class="ProductHeader__count-selector js--ProductHeader__count-selector CountSelector js--CountSelector">
-                                <form action="{{ route('products.store') }}" method="POST">
+                                <form action="{{ route('basketProducts.store') }}" method="POST">
                                     @csrf
                                     <div class="row mb-0">
                                         <div class="col-md-6 offset-md-4">
@@ -39,8 +39,8 @@
                                     </div>
                                     <input type="hidden" id="productId" name="productId" value="{{ $products->id }}">
                                     <input type="hidden" id="userId" name="userId" value="{{ $user->id }}">
-                                    <input type="hidden" id="count" name="count" value="{{ $products->shipment->count }}">
-                                    <input type="hidden" id="shipment_id" name="shipment_id" value="{{ $products->shipment_id }}">
+                                    <input type="hidden" id="count" name="count" value="{{ $shipments->count }}">
+                                    <input type="hidden" id="shipment_id" name="shipment_id" value="{{ $shipments->id }}">
                                 </form>
                             </div>
                         </div>

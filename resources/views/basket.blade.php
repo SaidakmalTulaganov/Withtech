@@ -1,7 +1,7 @@
 @extends('layouts.app')
 <?php $price = 0; ?>
 @foreach ($basketProducts as $basketProduct)
-    <?php $price = $basketProduct->product->shipment->price * $basketProduct->quantity + $price; ?>
+    <?php $price = $basketProduct->price + $price; ?>
 @endforeach
 
 @section('content')
@@ -42,11 +42,13 @@
                                             @csrf
                                             @method('DELETE')
                                             {{-- В корзине {{ $basketProduct->quantity }}шт --}}
-                                            <a href="{{ route('basketProducts.store', $basketProduct->product_id) }}" class="btn btn-primary bg-white shadow-sm text-secondary">
+                                            <a href="{{ route('basketProducts.store', $basketProduct->product_id) }}"
+                                                class="btn btn-primary bg-white shadow-sm text-secondary">
                                                 {{ __('-') }}
                                             </a>
                                             {{ $basketProduct->quantity }}
-                                            <a href="{{ route('basketProducts.store', $basketProduct->product_id) }}" class="btn btn-primary bg-white shadow-sm text-secondary">
+                                            <a href="{{ route('basketProducts.store', $basketProduct->product_id) }}"
+                                                class="btn btn-primary bg-white shadow-sm text-secondary">
                                                 {{ __('+') }}
                                             </a>
                                             <button class="btn btn-primary">
@@ -69,8 +71,7 @@
                                 href="{{ route('products.show', $basketProduct->product->id ?? '') }}">{{ $basketProduct->product->description ?? '' }}</a>
                             <ul class="list-unstyled mt-3 mb-4">
                                 <li>
-                                    <h3><b>{{ $basketProduct->product->shipment->price * $basketProduct->quantity }}
-                                            ₽</b>
+                                    <h3><b>{{ $basketProduct->price }} ₽</b>
                                     </h3>
                                 </li>
                             </ul>

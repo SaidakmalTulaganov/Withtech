@@ -27,26 +27,32 @@
         </aside> --}}
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-md-8">
-                <div class="card">
-                    @foreach ($products as $product)
-                        <div class="card-header">{{ $product->product_title }}</div>
-                        <div class="card-body">
-                            @if (session('status'))
-                                <div class="alert alert-success" role="alert">
-                                    {{ session('status') }}
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+                @foreach ($shipments as $shipment)
+                    <div class="col">
+                        <div class="card">
+
+                            <div class="card-header">{{ $shipment->product->product_title }}</div>
+                            <div class="card-body">
+                                @if (session('status'))
+                                    <div class="alert alert-success" role="alert">
+                                        {{ session('status') }}
+                                    </div>
+                                @endif
+                                <div style="min-height: 30em">
+                                    <img src="{{ asset($shipment->product->product_image) }}" class="img-thumbnail">
                                 </div>
-                            @endif
-                            <img src="{{ asset($product->product_image) }}" class="img-thumbnail" width="150px">
-                            <a href="{{ route('products.show', $product->id) }}">{{ $product->description }}</a>
-                            <ul class="list-unstyled mt-3 mb-4">
-                                <li>
-                                    <h3><b>{{ $product->shipment->price }} ₽</b></h3>
-                                </li>
-                            </ul>
+                                <a
+                                    href="{{ route('products.show', $shipment->id) }}">{{ $shipment->product->description }}</a>
+                                <ul class="list-unstyled mt-3 mb-4">
+                                    <li>
+                                        <h3><b>{{ $shipment->price }} ₽</b></h3>
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
-                    @endforeach
-                </div>
+                    </div>
+                @endforeach
             </div>
         </div>
     </div>

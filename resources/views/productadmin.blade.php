@@ -125,46 +125,6 @@
                 </div>
             </form>
             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-                {{-- @foreach ($products as $product)
-                    <div class="col">
-                        <div class="card">
-                            <div class="card-header">{{ $product->product_title }}
-                                <aside>
-                                    <div class="d-flex flex-column flex-shrink-0">
-                                        <div class="row mb-0">
-                                            <form action="{{ route('productsadmin.destroy', $shipment->id) }}"
-                                                method="POST">
-                                                @csrf
-                                                @method('DELETE')
-                                                Осталось {{ $product->shipment->count }} шт.
-                                                <button class="btn btn-primary">
-                                                    {{ __('Характеристики') }}
-                                                </button>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </aside>
-                            </div>
-                            <div class="card-body" style="min-height: 45em">
-                                @if (session('status'))
-                                    <div class="alert alert-success" role="alert">
-                                        {{ session('status') }}
-                                    </div>
-                                @endif
-                                <div style="min-height: 30em">
-                                    <img src="{{ asset($product->product_image) }}" class="img-thumbnail">
-                                </div>
-                                <b>{{ $product->shipment->price }} ₽</b>
-                                <ul class="list-unstyled mt-3 mb-4">
-                                    <li>
-                                        <a
-                                            href="{{ route('productsadmin.show', $product->id) }}">{{ $product->description }}</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                @endforeach --}}
                 @foreach ($shipments as $shipment)
                     <div class="col">
                         <div class="card">
