@@ -114,7 +114,55 @@ class BasketController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        // dd($request->input());
+        // echo $id;
+        if ($request->input('count') == '-') {
+            $quantitynow = BasketProduct::where('user_id', Auth::id())->where('product_id', $id)->value('quantity');
+            if ($quantitynow == 1) {
+                $shipment_id = Shipment::where('product_id', $id)->value('id');
+                $count = Shipment::where('id', $shipment_id)->value('count');
+                $quantity = BasketProduct::where('user_id', Auth::id())->where('product_id', $id)->value('quantity');
+                $updatedcount = Shipment::find($shipment_id)->update([
+                    'count' => $count + $quantity,
+                ]);
+                $delete = BasketProduct::where('user_id', Auth::id())->where('product_id', $id)->delete();
+                return redirect()->route('basketProducts.index')->with('success', 'Данные успешно удалены');
+            } elseif ($quantitynow > 1) {
+                $shipment_id = Shipment::where('product_id', $id)->value('id');
+                $count = Shipment::where('id', $shipment_id)->value('count');
+                $price = Shipment::where('id', $shipment_id)->value('price');
+                $quantity = BasketProduct::where('user_id', Auth::id())->where('product_id', $id)->value('quantity');
+                $pricenow = BasketProduct::where('user_id', Auth::id())->where('product_id', $id)->value('price');
+                $updatedquantity = BasketProduct::where('user_id', Auth::id())->where('product_id', $id)->update([
+                    'quantity' => $quantity - 1,
+                    'price' => $pricenow - $price,
+
+                ]);
+                $updatedcount = Shipment::find($shipment_id)->update([
+                    'count' => $count + 1,
+                ]);
+                return redirect()->route('basketProducts.index')->with('success', 'Данные успешно удалены');
+            }
+        } elseif ($request->input('count') == '+') {
+            $shipment_id = Shipment::where('product_id', $id)->value('id');
+            $count = Shipment::where('id', $shipment_id)->value('count');
+            if ($count == 0) {
+                echo 'Столько пока нет в наличии';
+            } elseif ($count > 0) {
+                $price = Shipment::where('id', $shipment_id)->value('price');
+                $quantity = BasketProduct::where('user_id', Auth::id())->where('product_id', $id)->value('quantity');
+                $pricenow = BasketProduct::where('user_id', Auth::id())->where('product_id', $id)->value('price');
+                $updatedquantity = BasketProduct::where('user_id', Auth::id())->where('product_id', $id)->update([
+                    'quantity' => $quantity + 1,
+                    'price' => $pricenow + $price,
+
+                ]);
+                $updatedcount = Shipment::find($shipment_id)->update([
+                    'count' => $count - 1,
+                ]);
+                return redirect()->route('basketProducts.index')->with('success', 'Данные успешно удалены');
+            }
+        }
     }
 
     /**
@@ -127,7 +175,7 @@ class BasketController extends Controller
     {
         $shipment_id = Shipment::where('product_id', $id)->value('id');
         $count = Shipment::where('id', $shipment_id)->value('count');
-        $quantity = BasketProduct::where('product_id', $id)->value('quantity');
+        $quantity = BasketProduct::where('user_id', Auth::id())->where('product_id', $id)->value('quantity');
         $updatedcount = Shipment::find($shipment_id)->update([
             'count' => $count + $quantity,
         ]);

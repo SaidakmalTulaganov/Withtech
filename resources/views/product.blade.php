@@ -4,6 +4,56 @@
     {{-- @section('content') --}}
     <?php $user = auth()->user();
     ?>
+    <style>
+        aside {
+            /* width: 280px; */
+            float: right;
+        }
+
+        article {
+            margin-right: 240px;
+            display: block;
+        }
+
+        /* Стили таблицы (IKSWEB) */
+        table.iksweb {
+            text-decoration: none;
+            border-collapse: collapse;
+            /* width: 300px; */
+            text-align: left;
+        }
+
+        table.iksweb th {
+            font-weight: normal;
+            font-size: 1px;
+            color: #000000;
+            background-color: #ffffff;
+        }
+
+        table.iksweb td {
+            font-size: 14px;
+            color: #000000;
+        }
+
+        table.iksweb td,
+        table.iksweb th {
+            white-space: pre-wrap;
+            padding: 10px 5px;
+            line-height: 13px;
+            vertical-align: middle;
+            border: 0px solid #c9c9c9;
+        }
+
+        table.iksweb tr:hover {
+            background-color: #f9fafb
+        }
+
+        table.iksweb tr:hover td {
+            color: #000000;
+            cursor: default;
+        }
+
+    </style>
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
@@ -16,6 +66,18 @@
                             </div>
                         @endif
                         <img src="{{ asset($products->product_image) }}" class="img-thumbnail" width="250px">
+                        <aside>
+                            @foreach ($characteristics as $characteristic)
+                                <table class="iksweb">
+                                    <tbody>
+                                        <tr>
+                                            <td>{{ $characteristic->set->title }}</td>
+                                            <td>{{ $characteristic->valueint }} {{ $characteristic->valuestr }} {{ $characteristic->valuedec }} {{ $characteristic->valuedate }}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            @endforeach
+                        </aside>
                         <h3>{{ $products->description }}</h3>
                         <ul class="list-unstyled mt-3 mb-4">
                             <li>

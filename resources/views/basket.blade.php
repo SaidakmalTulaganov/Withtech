@@ -37,12 +37,32 @@
                             <aside>
                                 <div class="d-flex flex-column flex-shrink-0">
                                     <div class="row mb-0">
+                                        <form action="{{ route('basketProducts.update', $basketProduct->product_id) }}"
+                                            method="POST">
+                                            @csrf
+                                            @method('PUT')
+                                            <button class="btn btn-primary bg-white shadow-sm text-secondary">
+                                                {{ __('-') }}
+                                            </button>
+                                            <input type="hidden" id="count" name="count" value="-">
+                                        </form>
+                                        {{ $basketProduct->quantity }}
+                                        <form action="{{ route('basketProducts.update', $basketProduct->product_id) }}"
+                                            method="POST">
+                                            @csrf
+                                            @method('PUT')
+                                            <button class="btn btn-primary bg-white shadow-sm text-secondary">
+                                                {{ __('+') }}
+                                            </button>
+                                            <input type="hidden" id="count" name="count" value="+">
+                                        </form>
+                                    </div>
+                                    <div class="row mb-0">
                                         <form action="{{ route('basketProducts.destroy', $basketProduct->product_id) }}"
                                             method="POST">
                                             @csrf
                                             @method('DELETE')
-                                            {{-- В корзине {{ $basketProduct->quantity }}шт --}}
-                                            <a href="{{ route('basketProducts.store', $basketProduct->product_id) }}"
+                                            {{-- <a href="{{ route('basketProducts.update', $basketProduct->product_id) }}"
                                                 class="btn btn-primary bg-white shadow-sm text-secondary">
                                                 {{ __('-') }}
                                             </a>
@@ -50,7 +70,7 @@
                                             <a href="{{ route('basketProducts.store', $basketProduct->product_id) }}"
                                                 class="btn btn-primary bg-white shadow-sm text-secondary">
                                                 {{ __('+') }}
-                                            </a>
+                                            </a> --}}
                                             <button class="btn btn-primary">
                                                 {{ __('Удалить') }}
                                             </button>

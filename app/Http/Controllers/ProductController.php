@@ -52,8 +52,6 @@ class ProductController extends Controller
      */
     public function show($id, Request $request)
     {
-        // $products = Product::find($id);
-        // return view('product', compact('products'));
         $shipments = Shipment::find($id);
         $product_id = Shipment::where('id', $id)->value('product_id');
         $products = Product::find($product_id);

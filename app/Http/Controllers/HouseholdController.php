@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
+use App\Models\Manufacturer;
 use App\Models\Product;
+use App\Models\Shipment;
 use Illuminate\Http\Request;
 
 class HouseholdController extends Controller
@@ -14,9 +17,12 @@ class HouseholdController extends Controller
      */
     public function index()
     {
-        $products = Product::where('category_id', 10)->get();
-        // dd($basketProducts);
-        return view('home', compact('products'));
+        $category_id = Category::where('category_name', 'Холодильники')->value('id');
+        $products = Product::where('category_id', $category_id)->get();
+        $shipments = Shipment::get();
+        $categories = Category::get();
+        $manufacturers = Manufacturer::get();
+        return view('home', compact('products', 'shipments', 'categories', 'manufacturers'));
     }
 
     /**
