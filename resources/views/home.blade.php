@@ -32,7 +32,7 @@
                     <div class="col">
                         <div class="card">
 
-                            <div class="card-header">{{ $shipment->product->product_title }}</div>
+                            <div class="card-header">{{ $shipment->product_title }}</div>
                             <div class="card-body">
                                 @if (session('status'))
                                     <div class="alert alert-success" role="alert">
@@ -40,10 +40,10 @@
                                     </div>
                                 @endif
                                 <div style="min-height: 30em">
-                                    <img src="{{ asset($shipment->product->product_image) }}" class="img-thumbnail">
+                                    <img src="{{ asset($shipment->product_image) }}" class="img-thumbnail">
                                 </div>
                                 <a
-                                    href="{{ route('products.show', $shipment->id) }}">{{ $shipment->product->description }}</a>
+                                    href="{{ route('products.show', $shipment->id) }}">{{ $shipment->description }}</a>
                                 <ul class="list-unstyled mt-3 mb-4">
                                     <li>
                                         <h3><b>{{ $shipment->price }} ₽</b></h3>

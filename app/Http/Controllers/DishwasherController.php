@@ -7,6 +7,7 @@ use App\Models\Manufacturer;
 use App\Models\Product;
 use App\Models\Shipment;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class DishwasherController extends Controller
 {
@@ -18,11 +19,10 @@ class DishwasherController extends Controller
     public function index()
     {
         $category_id = Category::where('category_name', 'Посудомоечные машины')->value('id');
-        $products = Product::where('category_id', $category_id)->get();
-        $shipments = Shipment::get();
-        $categories = Category::get();
-        $manufacturers = Manufacturer::get();
-        return view('home', compact('products', 'shipments', 'categories', 'manufacturers'));
+        $shipments = DB::table('shipments')
+            ->leftJoin('products', 'shipments.product_id', '=', 'products.id')->where('products.category_id', $category_id)
+            ->get();
+        return view('home', compact('shipments'));
     }
 
     /**

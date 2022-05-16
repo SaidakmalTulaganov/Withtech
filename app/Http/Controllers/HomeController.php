@@ -28,11 +28,10 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $products = Product::get();
-        $shipments = Shipment::get();
-        $categories = Category::get();
-        $manufacturers = Manufacturer::get();
-        return view('home', compact('products', 'shipments', 'categories', 'manufacturers'));
+        $shipments = DB::table('shipments')
+            ->leftJoin('products', 'shipments.product_id', '=', 'products.id')
+            ->get();
+        return view('home', compact('shipments'));
     }
 
     /**
