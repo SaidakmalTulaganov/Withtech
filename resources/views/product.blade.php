@@ -72,7 +72,7 @@
                                     <tbody>
                                         <tr>
                                             <td>{{ $characteristic->set->title }}</td>
-                                            <td>{{ $characteristic->valueint }} {{ $characteristic->valuestr }} {{ $characteristic->valuedec }} {{ $characteristic->valuedate }}</td>
+                                            <td>{{ $characteristic->valueint }} {{ $characteristic->valuestr }} {{ $characteristic->valuedec }} {{ $characteristic->valuedate }} {{ $characteristic->set->measure }}</td>
                                         </tr>
                                     </tbody>
                                 </table>

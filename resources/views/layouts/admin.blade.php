@@ -39,10 +39,10 @@
                         {{-- <li><a href="/about" class="nav-link px-2 text-secondary">Контакты</a></li> --}}
                     </ul>
 
-                    <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
+                    {{-- <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
                         <input type="search" class="form-control form-control-dark" placeholder="Поиск..."
                             aria-label="Search">
-                    </form>
+                    </form> --}}
                 </div>
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">

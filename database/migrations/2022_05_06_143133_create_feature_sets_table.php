@@ -18,6 +18,7 @@ return new class extends Migration
             $table->foreignId('category_id')->references('id')->on('categories');
             $table->string('title', 50);
             $table->string('type', 50);
+            $table->string('measure', 50)->nullable();;
         });
     }
 

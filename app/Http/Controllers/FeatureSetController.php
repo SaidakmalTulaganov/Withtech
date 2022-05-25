@@ -45,6 +45,7 @@ class FeatureSetController extends Controller
             'category_id' => $request->input('category_id'),
             'title' => $request->input('title'),
             'type' => $request->input('type'),
+            'measure' => $request->input('measure'),
         ]);
 
         if ($newSets) {

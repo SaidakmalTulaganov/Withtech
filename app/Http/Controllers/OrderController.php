@@ -45,14 +45,27 @@ class OrderController extends Controller
     public function store(Request $request)
     {
         //dd($request->input());
-        $newOrders = Order::create([
-            'user_id' => Auth::id(),
-            'order_datetime' => now(),
-            'order_status' => 'Новый',
-            'payment_type' => $request->input('paymentType'),
-            'delivery_address' => $request->input('delivery_address'),
-            'order_price' => $request->input('orderPrice'),
-        ]);
+        $baskets = BasketProduct::where('user_id', Auth::id())->get();
+        foreach($baskets as $basket){
+            $newOrders = Order::create([
+                'user_id' => Auth::id(),
+                'product_id' => $basket->product_id,
+                'quantity' => $basket->quantity,
+                'order_datetime' => now(),
+                'order_status' => 'Новый',
+                'payment_type' => $request->input('paymentType'),
+                'delivery_address' => $request->input('delivery_address'),
+                'order_price' => $basket->price,
+            ]);
+        }
+        // $newOrders = Order::create([
+        //     'user_id' => Auth::id(),
+        //     'order_datetime' => now(),
+        //     'order_status' => 'Новый',
+        //     'payment_type' => $request->input('paymentType'),
+        //     'delivery_address' => $request->input('delivery_address'),
+        //     'order_price' => $request->input('orderPrice'),
+        // ]);
 
         $delete = BasketProduct::where('user_id', Auth::id())->delete();
 

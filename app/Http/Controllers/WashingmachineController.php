@@ -18,7 +18,7 @@ class WashingmachineController extends Controller
      */
     public function index()
     {
-        $category_id = Category::where('category_name', 'Cтиральные машины')->value('id');
+        $category_id = Category::where('category_name', 'Стиральные машины')->value('id');
         $shipments = DB::table('shipments')
             ->leftJoin('products', 'shipments.product_id', '=', 'products.id')->where('products.category_id', $category_id)
             ->get();

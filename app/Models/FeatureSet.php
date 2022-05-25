@@ -20,5 +20,6 @@ class FeatureSet extends Model
         'category_id',
         'title',
         'type',
+        'measure',
     ];
 }
