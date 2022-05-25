@@ -16,6 +16,8 @@ return new class extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->id('id');
             $table->foreignId('user_id')->references('id')->on('users');
+            $table->foreignId('product_id')->references('id')->on('products');
+            $table->integer('quantity');
             $table->dateTime('order_datetime');
             $table->string('order_status', 50);
             $table->string('payment_type', 50);

@@ -47,7 +47,9 @@ class HomeController extends Controller
     public function search()
     {
         $res = htmlspecialchars($_GET['search']);
-        $products = Product::where('description', 'like', '%' . $res . '%')->get();
-        return view('home', compact('products'));
+        $shipments = DB::table('shipments')
+            ->leftJoin('products', 'shipments.product_id', '=', 'products.id')->where('description', 'like', '%' . $res . '%')
+            ->get();
+        return view('home', compact('shipments'));
     }
 }

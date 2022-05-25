@@ -158,14 +158,14 @@
                     Данные о товарах
                 </a>
             </li>
-            <li>
+            {{-- <li>
                 <a href="{{ route('orders.index') }}" class="nav-link px-2 text-secondary">
                     <svg class="bi me-2" width="16" height="16">
                         <use xlink:href="#table"></use>
                     </svg>
                     Заказы
                 </a>
-            </li>
+            </li> --}}
         </ul>
     </div>
     <main class="py-4">

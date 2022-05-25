@@ -36,7 +36,7 @@
                         <li><a href="/home" class="nav-link px-2 text-secondary">WITHTECH</a></li>
                         <li><a href="{{ route('basketProducts.index') }}"
                                 class="nav-link px-2 text-secondary">Корзина</a></li>
-                        <li><a href="/about" class="nav-link px-2 text-secondary">Контакты</a></li>
+                        {{-- <li><a href="/about" class="nav-link px-2 text-secondary">Контакты</a></li> --}}
                     </ul>
 
                     <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" action="{{ route('home.search')}}">
