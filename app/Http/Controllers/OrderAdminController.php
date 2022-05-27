@@ -7,6 +7,8 @@ use App\Models\OrderValue;
 use App\Models\State;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\OrdersAdminExport;
 
 class OrderAdminController extends Controller
 {
@@ -96,5 +98,13 @@ class OrderAdminController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function export(Request $request)
+    {
+        // dd($request->input());
+        $file_name = 'Отчет по заказам за '.now()->toDateString().'.xlsx';
+        // echo $file_name;
+        return Excel::download(new OrdersAdminExport, $file_name);
     }
 }

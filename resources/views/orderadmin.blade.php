@@ -111,12 +111,24 @@
     </style>
     <div class="container">
         <div class="row justify-content-center">
+            <form action="{{ route('ordersadmin.export') }}" method="POST">
+                @csrf
+                @method('GET')
+                <div class="row mb-0">
+                    <div class="col-md-6 offset-md-4">
+                        Выгрузить отчет по всем заказам
+                        <button type="submit" class="btn btn-primary">
+                            {{ __('Выгрузить') }}
+                        </button>
+                    </div>
+                </div>
+            </form>
             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
                 @foreach ($order_sets as $order_set)
                     <div class="col">
                         <div class="card">
                             <div class="card-header">
-                                <a href="{{ route('ordersadmin.show', $order_set->id) }}">Заказ от
+                                <a href="{{ route('ordersadmin.show', $order_set->id) }}">Заказ № {{ $order_set->id }} от
                                     {{ $order_set->order_datetime }}</a>
                                 <aside>
                                     <div class="d-flex flex-column flex-shrink-0">
@@ -136,17 +148,12 @@
                                     </div>
                                 @endif
                                 <ul class="list-unstyled mt-3 mb-4">
-                                    {{-- @foreach ($order_values as $order_value)
-                                        <li>
-                                            <b>Товар: {{ $order_value->product->product_title }}</b>
-                                        </li>
-                                        <li>
-                                            <b>Количество: {{ $order_value->quantity }}</b>
-                                        </li>
-                                        <li>
-                                            <b>Стоимость: {{ $order_value->price }} ₽</b>
-                                        </li>
-                                    @endforeach --}}
+                                    <li>
+                                        <b>Покупатель: {{ $order_set->user->surname }} {{ $order_set->user->name }}</b>
+                                    </li>
+                                    <li>
+                                        <b>Адрес доставки: {{ $order_set->delivery_address }}</b>
+                                    </li>
                                     <li>
                                         <b>Общая сумма заказа: {{ $order_set->order_price }} ₽</b>
                                     </li>

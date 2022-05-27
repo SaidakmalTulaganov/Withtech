@@ -42,7 +42,7 @@ class ShipmentsExport implements FromCollection, WithHeadings, WithColumnWidths,
             'Закупочная цена',
             'Цена для продаж',
             'Количество',
-            'Дата время',
+            'Дата время поставки',
         ];
     }
 

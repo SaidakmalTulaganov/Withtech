@@ -43,6 +43,8 @@ Auth::routes();
 
 Route::get('shipments/export/', [App\Http\Controllers\ShipmentController::class, 'export'])->name('shipments.export');
 
+Route::get('ordersadmin/export/', [App\Http\Controllers\OrderAdminController::class, 'export'])->name('ordersadmin.export');
+
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 

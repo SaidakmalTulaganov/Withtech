@@ -114,7 +114,7 @@ class ShipmentController extends Controller
     public function export(Request $request)
     {
         // dd($request->input());
-        $file_name = 'shipments'.now()->toDateTimeString().'.xlsx';
+        $file_name = 'Отчет по партиям за '.now()->toDateString().'.xlsx';
         // echo $file_name;
         return Excel::download(new ShipmentsExport, $file_name);
     }
