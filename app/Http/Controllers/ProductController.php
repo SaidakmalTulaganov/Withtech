@@ -53,8 +53,10 @@ class ProductController extends Controller
     public function show($id, Request $request)
     {
         $shipments = Shipment::find($id);
+        // echo $shipments;
         $product_id = Shipment::where('id', $id)->value('product_id');
         $products = Product::find($product_id);
+        // echo $products;
         $category_id = Product::where('id', $product_id)->value('category_id');
         $sets = FeatureSet::where('category_id', $category_id)->get();
         $characteristics = Characteristic::where('product_id', $product_id)->get();

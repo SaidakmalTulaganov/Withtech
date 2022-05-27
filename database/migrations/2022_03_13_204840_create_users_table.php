@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('email', 100)->unique();
             $table->string('password')->unique();
             $table->string('phone', 12)->unique();
+            $table->integer('bonus')->nullable();
         });
     }
 

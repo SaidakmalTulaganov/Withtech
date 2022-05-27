@@ -39,9 +39,9 @@
                         {{-- <li><a href="/about" class="nav-link px-2 text-secondary">Контакты</a></li> --}}
                     </ul>
 
-                    <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" action="{{ route('home.search') }}">
+                    <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" action="{{ route('clientorders.Search') }}">
                         <input type="search" name="search" class="form-control form-control-dark"
-                            placeholder="Поиск по товарам..." aria-label="Search">
+                            placeholder="Поиск по заказам..." aria-label="Search">
                     </form>
                 </div>
 
@@ -85,7 +85,7 @@
                                     </a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                         onclick="event.preventDefault();
-                                                                                                            document.getElementById('logout-form').submit();">
+                                                                                                                            document.getElementById('logout-form').submit();">
                                         {{ __('Выйти') }}
                                     </a>
 
@@ -109,121 +109,49 @@
             </a>
             <hr> --}}
             <ul class="nav nav-pills flex-column mb-auto">
-                <li class="nav-item">
-                    <a href="{{ route('washingmachines.index') }}" class="nav-link px-2 text-secondary"
-                        aria-current="page">
+                <li>
+                    <a href="{{ route('clients.index') }}" class="nav-link px-2 text-secondary" aria-current="page">
                         <svg class="bi me-2" width="16" height="16">
                             <use xlink:href="#home"></use>
                         </svg>
-                        Стиральные машины
+                        Мой профиль
                     </a>
                 </li>
                 <li>
-                    <a href="{{ route('electricstoves.index') }}" class="nav-link px-2 text-secondary">
+                    <a href="{{ route('clientorders.index') }}" class="nav-link px-2 text-secondary">
                         <svg class="bi me-2" width="16" height="16">
                             <use xlink:href="#speedometer2"></use>
                         </svg>
-                        Электрические плиты
+                        Заказы
                     </a>
                 </li>
                 <li>
-                    <a href="{{ route('gasstoves.index') }}" class="nav-link px-2 text-secondary">
+                    <a href="" class="nav-link px-2 text-secondary">
                         <svg class="bi me-2" width="16" height="16">
                             <use xlink:href="#table"></use>
                         </svg>
-                        Газовые плиты
+                        Доставка
                     </a>
                 </li>
                 <li>
-                    <a href="{{ route('tvs.index') }}" class="nav-link px-2 text-secondary">
+                    <a href="" class="nav-link px-2 text-secondary">
                         <svg class="bi me-2" width="16" height="16">
                             <use xlink:href="#grid"></use>
                         </svg>
-                        Телевизоры
+                        Избранное
                     </a>
                 </li>
                 <li>
-                    <a href="{{ route('households.index') }}" class="nav-link px-2 text-secondary">
+                    <a href="{{ route('basketProducts.index') }}" class="nav-link px-2 text-secondary">
                         <svg class="bi me-2" width="16" height="16">
-                            <use xlink:href="#people-circle"></use>
+                            <use xlink:href="#grid"></use>
                         </svg>
-                        Холодильники
-                    </a>
-                </li>
-                <li>
-                    <a href="{{ route('dishwashers.index') }}" class="nav-link px-2 text-secondary">
-                        <svg class="bi me-2" width="16" height="16">
-                            <use xlink:href="#people-circle"></use>
-                        </svg>
-                        Посудомоечные машины
+                        Корзина
                     </a>
                 </li>
             </ul>
         </div>
     </div>
-
-    <!-------------------------------    SIDEBAR        ------------------------------->
-
-    {{-- <div class="d-flex flex-column flex-shrink-0 p-3 bg-white shadow-sm" style="width: 280px;">
-        <a href="" class="nav-link px-2 text-secondary">
-            <svg class="bi me-2" width="16" height="16">
-                <use xlink:href="#bootstrap"></use>
-            </svg>
-            КАТАЛОГ ТОВАРОВ
-        </a>
-        <hr>
-        <ul class="nav nav-pills flex-column mb-auto">
-            <li class="nav-item">
-                <a href="{{ route('washingmachines.index') }}" class="nav-link px-2 text-secondary"
-                    aria-current="page">
-                    <svg class="bi me-2" width="16" height="16">
-                        <use xlink:href="#home"></use>
-                    </svg>
-                    Стиральные машины
-                </a>
-            </li>
-            <li>
-                <a href="{{ route('electricstoves.index') }}" class="nav-link px-2 text-secondary">
-                    <svg class="bi me-2" width="16" height="16">
-                        <use xlink:href="#speedometer2"></use>
-                    </svg>
-                    Электрические плиты
-                </a>
-            </li>
-            <li>
-                <a href="{{ route('gasstoves.index') }}" class="nav-link px-2 text-secondary">
-                    <svg class="bi me-2" width="16" height="16">
-                        <use xlink:href="#table"></use>
-                    </svg>
-                    Газовые плиты
-                </a>
-            </li>
-            <li>
-                <a href="{{ route('tvs.index') }}" class="nav-link px-2 text-secondary">
-                    <svg class="bi me-2" width="16" height="16">
-                        <use xlink:href="#grid"></use>
-                    </svg>
-                    Телевизоры
-                </a>
-            </li>
-            <li>
-                <a href="{{ route('households.index') }}" class="nav-link px-2 text-secondary">
-                    <svg class="bi me-2" width="16" height="16">
-                        <use xlink:href="#people-circle"></use>
-                    </svg>
-                    Холодильники
-                </a>
-            </li>
-            <li>
-                <a href="{{ route('dishwashers.index') }}" class="nav-link px-2 text-secondary">
-                    <svg class="bi me-2" width="16" height="16">
-                        <use xlink:href="#people-circle"></use>
-                    </svg>
-                    Посудомоечные машины
-                </a>
-            </li>
-        </ul>
-    </div> --}}
     <main class="py-4">
         @yield('content')
     </main>

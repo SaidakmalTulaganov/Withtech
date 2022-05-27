@@ -139,7 +139,17 @@
                                 </table>
                             @endforeach
                         </aside>
-                        <b>{{ $shipments->price }} ₽</b>
+                        <ul class="list-unstyled mt-3 mb-4">
+                            <li>
+                                <b>Закупочная цена: {{ $shipments->purchase_price }} ₽</b>
+                            </li>
+                            <li>
+                                <b>Цена для продаж: {{ $shipments->selling_price }} ₽</b>
+                            </li>
+                            <li>
+                                <b>Процент бонуса: {{ $products->bonus_percent }} %</b>
+                            </li>
+                        </ul>
                         <ul class="list-unstyled mt-3 mb-4">
                             <li>
                                 {{ $products->description }}

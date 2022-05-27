@@ -44,7 +44,7 @@ class BasketController extends Controller
     public function store(Request $request)
     {
         $count = Shipment::where('id', $request->input('shipment_id'))->value('count');
-        $product_price = Shipment::where('id', $request->input('shipment_id'))->value('price');
+        $product_price = Shipment::where('id', $request->input('shipment_id'))->value('selling_price');
         $present = BasketProduct::where('user_id', Auth::id())->where('product_id', $request->input('productId'))->value('id');
         if ($count > $request->input('quantity')) {
             if ($present == null) {
@@ -58,9 +58,9 @@ class BasketController extends Controller
                     'count' => $request->input('count') - $request->input('quantity'),
                 ]);
                 if ($newPositions) {
-                    return redirect()->route('products.show', $request->input('productId'))->with('success', 'Данные успешно добавлены');
+                    return redirect()->route('products.show', $request->input('shipment_id'))->with('success', 'Данные успешно добавлены');
                 } else {
-                    return redirect()->route('products.show', $request->input('productId'))->with('fail', 'Что-то пошло не так');
+                    return redirect()->route('products.show', $request->input('shipment_id'))->with('fail', 'Что-то пошло не так');
                 }
             } else if ($present != null) {
                 $quantitynow = BasketProduct::where('id', $present)->value('quantity');
@@ -74,9 +74,9 @@ class BasketController extends Controller
                     'count' => $request->input('count') - $request->input('quantity'),
                 ]);
                 if ($updatedquantity) {
-                    return redirect()->route('products.show', $request->input('productId'))->with('success', 'Данные успешно добавлены');
+                    return redirect()->route('products.show', $request->input('shipment_id'))->with('success', 'Данные успешно добавлены');
                 } else {
-                    return redirect()->route('products.show', $request->input('productId'))->with('fail', 'Что-то пошло не так');
+                    return redirect()->route('products.show', $request->input('shipment_id'))->with('fail', 'Что-то пошло не так');
                 }
             }
         } else {

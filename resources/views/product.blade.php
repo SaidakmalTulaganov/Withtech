@@ -81,7 +81,7 @@
                         <h3>{{ $products->description }}</h3>
                         <ul class="list-unstyled mt-3 mb-4">
                             <li>
-                                <h3><b>{{ $shipments->price }} ₽</b></h3>
+                                <h3><b>{{ $shipments->selling_price }} ₽</b></h3>
                             </li>
                         </ul>
                         <div class="js--ProductHeader__count-selector-container ProductHeader__count-selector-container">

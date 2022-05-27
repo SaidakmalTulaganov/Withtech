@@ -24,6 +24,7 @@ class Product extends Model
         'category_id',
         'manufacturer_id',
         'product_title',
+        'bonus_pencent',
         'description',
         'product_image',
     ];

@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Order extends Model
+class OrderSet extends Model
 {
     use HasFactory;
 
@@ -13,19 +13,17 @@ class Order extends Model
     {
         return $this->belongsTo(User::class, 'user_id', 'id');
     }
-    public function product()
+    public function state()
     {
-        return $this->belongsTo(Product::class, 'product_id', 'id');
+        return $this->belongsTo(State::class, 'state_id', 'id');
     }
 
     public $timestamps = false;
 
     protected $fillable = [
         'user_id',
-        'product_id',
-        'quantity',
         'order_datetime',
-        'order_status',
+        'state_id',
         'payment_type',
         'delivery_address',
         'order_price',

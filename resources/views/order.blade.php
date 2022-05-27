@@ -1,5 +1,6 @@
 @extends('layouts.app')
 <?php $price = htmlspecialchars($_GET['price']);
+$bonus = 1;
 ?>
 @section('content')
     <div class="container">
@@ -77,6 +78,49 @@
                                                     </div>
                                                 </div>
                                             </div>
+
+                                            <div class="OrderSection">
+                                                <div class="OrderSection__header">
+                                                    {{-- <div class="OrderSection__title">Списать бонусы?
+                                                        Баланс бонусов: {{ $user }}
+                                                    </div> --}}
+                                                    <ul class="list-unstyled mt-3 mb-4">
+                                                        <li>
+                                                            <b>Баланс бонусов: {{ $user }}</b>
+                                                        </li>
+                                                        <li>
+                                                            <b>Списать бонусы?</b>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                                <div class="OrderSection__content">
+                                                    <div
+                                                        class="RadioGroup RadioGroup_horizontal RadioGroup_force_mobile_horizontal">
+                                                        <label class="RadioButton Radio Radio_checked">
+                                                            <span
+                                                                class="Radio__input InputBox InputBox_type_radio InputBox_checked">
+                                                                <input class="InputBox__input" type="radio"
+                                                                    name="yes_or_no" value="Да" checked="">
+                                                                <span class="InputBox__checkmark" hidden="">
+                                                                </span>
+                                                            </span>
+                                                            <span class="Radio__label">Да
+                                                            </span>
+                                                        </label>
+                                                        <label class="RadioButton Radio">
+                                                            <span class="Radio__input InputBox InputBox_type_radio">
+                                                                <input class="InputBox__input" type="radio"
+                                                                    name="yes_or_no" value="Нет">
+                                                                <span class="InputBox__checkmark" hidden="">
+                                                                </span>
+                                                            </span>
+                                                            <span class="Radio__label">Нет
+                                                            </span>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+
                                             <div class="B2CPaymentLayout__contact-for-check">
                                                 <div name="CONTACT_FOR_CHECK" class="OrderStep">
                                                     <div class="ContactForCheckLayout">
@@ -130,13 +174,10 @@
                                     </button>
                                 </div>
                             </div>
+                        </form>
                     </div>
                 </div>
             </div>
-            </form>
         </div>
-    </div>
-    </div>
-    </div>
     </div>
 @endsection

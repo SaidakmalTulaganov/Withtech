@@ -13,14 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('shipments', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('supplier_id')->references('id')->on('suppliers');
+        Schema::create('order_values', function (Blueprint $table) {
+            $table->id('id');
+            $table->foreignId('set_id')->references('id')->on('order_sets');
             $table->foreignId('product_id')->references('id')->on('products');
-            $table->integer('purchase_price');
-            $table->integer('selling_price');
-            $table->integer('count');
-            $table->dateTime('datetime');
+            $table->integer('quantity');
+            $table->integer('price');
         });
     }
 
@@ -31,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('shipments');
+        Schema::dropIfExists('order_values');
     }
 };

@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.client')
 <?php $price = 0; ?>
 @foreach ($basketProducts as $basketProduct)
     <?php $price = $basketProduct->price + $price; ?>

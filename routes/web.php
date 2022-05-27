@@ -20,6 +20,9 @@ use App\Http\Controllers\ProductAdminController;
 use App\Http\Controllers\ProductPageController;
 use App\Http\Controllers\ShipmentController;
 use App\Http\Controllers\SupplierController;
+use App\Http\Controllers\ClientOrderController;
+use App\Http\Controllers\ClientController;
+use App\Http\Controllers\OrderAdminController;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,9 +41,14 @@ Route::get('/', function () {
 
 Auth::routes();
 
+Route::get('shipments/export/', [App\Http\Controllers\ShipmentController::class, 'export'])->name('shipments.export');
+
+
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::get('/search', [App\Http\Controllers\HomeController::class, 'search'])->name('home.search');
+
+Route::get('/Search', [App\Http\Controllers\ClientOrderController::class, 'Search'])->name('clientorders.Search');
 
 Route::resources([
     'products' => ProductController::class,
@@ -116,4 +124,16 @@ Route::resources([
 
 Route::resources([
     'productspages' => ProductPageController::class,
+]);
+
+Route::resources([
+    'clientorders' => ClientOrderController::class,
+]);
+
+Route::resources([
+    'clients' => ClientController::class,
+]);
+
+Route::resources([
+    'ordersadmin' => OrderAdminController::class,
 ]);

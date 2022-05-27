@@ -28,9 +28,11 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $shipments = DB::table('shipments')
-            ->leftJoin('products', 'shipments.product_id', '=', 'products.id')
-            ->get();
+        // $shipments = DB::table('shipments')
+        //     ->leftJoin('products', 'shipments.product_id', '=', 'products.id')
+        //     ->get();
+        $shipments = Shipment::get();
+        // echo $shipments;
         return view('home', compact('shipments'));
     }
 

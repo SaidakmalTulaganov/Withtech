@@ -53,15 +53,18 @@ class ProductAdminController extends Controller
      */
     public function store(Request $request)
     {
+        // dd($request->input());
         $request->validate([
             'product_title' => ['required', 'string', 'max:50'],
             'description' => ['required', 'string'],
             'product_image' => ['required', 'string', 'max:100'],
+            'percent' => ['required', 'integer'],
         ]);
         $newProducts = Product::create([
             'category_id' => $request->input('category_id'),
             'manufacturer_id' => $request->input('manufacturer_id'),
             'product_title' => $request->input('product_title'),
+            'bonus_pencent' => $request->input('percent'),
             'description' => $request->input('description'),
             'product_image' => $request->input('product_image'),
         ]);

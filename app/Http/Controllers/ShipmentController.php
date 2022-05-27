@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\ShipmentsExport;
+use App\Exports\UsersExport;
 use App\Models\Product;
 use App\Models\Shipment;
 use App\Models\Supplier;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 
 class ShipmentController extends Controller
 {
@@ -42,13 +45,15 @@ class ShipmentController extends Controller
     {
         //dd($request->input());
         $request->validate([
-            'price' => ['required', 'integer'],
+            'purchase_price' => ['required', 'integer'],
+            'selling_price' => ['required', 'integer'],
             'count' => ['required', 'integer'],
         ]);
         $newShipments = Shipment::create([
             'supplier_id' => $request->input('supplier_id'),
             'product_id' => $request->input('product_id'),
-            'price' => $request->input('price'),
+            'purchase_price' => $request->input('purchase_price'),
+            'selling_price' => $request->input('selling_price'),
             'count' => $request->input('count'),
             'datetime' => now(),
         ]);
@@ -104,5 +109,13 @@ class ShipmentController extends Controller
     {
         $delete = Shipment::where('id', $id)->delete();
         return redirect()->route('shipments.index')->with('success', 'Данные успешно удалены');
+    }
+
+    public function export(Request $request)
+    {
+        // dd($request->input());
+        $file_name = 'shipments'.now()->toDateTimeString().'.xlsx';
+        // echo $file_name;
+        return Excel::download(new ShipmentsExport, $file_name);
     }
 }
