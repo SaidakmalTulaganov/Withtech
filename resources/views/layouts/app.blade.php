@@ -80,6 +80,9 @@
                                     <a href="{{ route('clientorders.index') }}" class="dropdown-item">
                                         {{ __('Заказы') }}
                                     </a>
+                                    {{-- <a href="{{ route('selects.index') }}" class="dropdown-item">
+                                        {{ __('Избранное') }}
+                                    </a> --}}
                                     <a href="{{ route('basketProducts.index') }}" class="dropdown-item">
                                         {{ __('Корзина') }}
                                     </a>

@@ -180,7 +180,7 @@
                                         <b>Цена для продаж: {{ $shipment->selling_price }} ₽</b>
                                     </li>
                                     <li>
-                                        <b>Процент бонуса: {{ $shipment->product->bonus_percent }} %</b>
+                                        <b>Процент бонуса: {{ $shipment->product->bonus_pencent }} %</b>
                                     </li>
                                 </ul>
                                 <ul class="list-unstyled mt-3 mb-4">

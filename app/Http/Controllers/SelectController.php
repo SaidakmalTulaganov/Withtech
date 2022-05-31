@@ -2,14 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Category;
-use App\Models\Manufacturer;
-use App\Models\Product;
+use App\Models\Select;
 use App\Models\Shipment;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
-class WashingmachineController extends Controller
+class SelectController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,12 +16,10 @@ class WashingmachineController extends Controller
      */
     public function index()
     {
-        $category_id = Category::where('category_name', 'Стиральные машины')->value('id');
-        $shipments = DB::table('shipments')
-            ->leftJoin('products', 'shipments.product_id', '=', 'products.id')->where('products.category_id', $category_id)
-            ->get();
-            // echo $shipments;
-        return view('home', compact('shipments'));
+        $product_id = Select::where('user_id', Auth::id())->value('product_id');
+        $shipments = Shipment::where('product_id', $product_id)->get();
+        $selects = Select::where('user_id', Auth::id())->get();
+        return view('select', compact('shipments', 'selects'));
     }
 
     /**
@@ -42,9 +38,23 @@ class WashingmachineController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store($id)
     {
-        //
+        $select = Select::where('user_id', Auth::id())->where('product_id', $id)->get();
+        echo $select;
+        // if ($select == null) {
+        //     $newPositions = Select::create([
+        //         'user_id' => Auth::id(),
+        //         'product_id' => $id,
+        //     ]);
+        //     if ($newPositions) {
+        //         return redirect()->route('selects.index')->with('success', 'Данные успешно добавлены');
+        //     } else {
+        //         return redirect()->route('selects.index')->with('fail', 'Что-то пошло не так');
+        //     }
+        // } elseif ($select != null) {
+        //     return redirect()->route('selects.index')->with('success', 'Данные успешно добавлены');
+        // }
     }
 
     /**

@@ -23,6 +23,7 @@ use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\ClientOrderController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\OrderAdminController;
+use App\Http\Controllers\SelectController;
 
 /*
 |--------------------------------------------------------------------------
@@ -138,4 +139,8 @@ Route::resources([
 
 Route::resources([
     'ordersadmin' => OrderAdminController::class,
+]);
+
+Route::resources([
+    'selects' => SelectController::class,
 ]);

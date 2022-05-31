@@ -130,7 +130,7 @@ class BasketController extends Controller
             } elseif ($quantitynow > 1) {
                 $shipment_id = Shipment::where('product_id', $id)->value('id');
                 $count = Shipment::where('id', $shipment_id)->value('count');
-                $price = Shipment::where('id', $shipment_id)->value('price');
+                $price = Shipment::where('id', $shipment_id)->value('selling_price');
                 $quantity = BasketProduct::where('user_id', Auth::id())->where('product_id', $id)->value('quantity');
                 $pricenow = BasketProduct::where('user_id', Auth::id())->where('product_id', $id)->value('price');
                 $updatedquantity = BasketProduct::where('user_id', Auth::id())->where('product_id', $id)->update([
@@ -149,7 +149,7 @@ class BasketController extends Controller
             if ($count == 0) {
                 echo 'Столько пока нет в наличии';
             } elseif ($count > 0) {
-                $price = Shipment::where('id', $shipment_id)->value('price');
+                $price = Shipment::where('id', $shipment_id)->value('selling_price');
                 $quantity = BasketProduct::where('user_id', Auth::id())->where('product_id', $id)->value('quantity');
                 $pricenow = BasketProduct::where('user_id', Auth::id())->where('product_id', $id)->value('price');
                 $updatedquantity = BasketProduct::where('user_id', Auth::id())->where('product_id', $id)->update([
