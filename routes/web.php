@@ -24,6 +24,7 @@ use App\Http\Controllers\ClientOrderController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\OrderAdminController;
 use App\Http\Controllers\SelectController;
+use App\Http\Controllers\StatesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -143,4 +144,8 @@ Route::resources([
 
 Route::resources([
     'selects' => SelectController::class,
+]);
+
+Route::resources([
+    'states' => StatesController::class,
 ]);

@@ -30,74 +30,70 @@
     </aside>
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-md-8">
-                <div class="card">
-                    @foreach ($basketProducts as $basketProduct)
-                        <div class="card-header">{{ $basketProduct->product->product_title }}
-                            <aside>
-                                <div class="d-flex flex-column flex-shrink-0">
-                                    <div class="row mb-0">
-                                        <form action="{{ route('basketProducts.update', $basketProduct->product_id) }}"
-                                            method="POST">
-                                            @csrf
-                                            @method('PUT')
-                                            <button class="btn btn-primary bg-white shadow-sm text-secondary">
-                                                {{ __('-') }}
-                                            </button>
-                                            <input type="hidden" id="count" name="count" value="-">
-                                        </form>
-                                        {{ $basketProduct->quantity }}
-                                        <form action="{{ route('basketProducts.update', $basketProduct->product_id) }}"
-                                            method="POST">
-                                            @csrf
-                                            @method('PUT')
-                                            <button class="btn btn-primary bg-white shadow-sm text-secondary">
-                                                {{ __('+') }}
-                                            </button>
-                                            <input type="hidden" id="count" name="count" value="+">
-                                        </form>
-                                    </div>
-                                    <div class="row mb-0">
-                                        <form action="{{ route('basketProducts.destroy', $basketProduct->product_id) }}"
-                                            method="POST">
-                                            @csrf
-                                            @method('DELETE')
-                                            {{-- <a href="{{ route('basketProducts.update', $basketProduct->product_id) }}"
-                                                class="btn btn-primary bg-white shadow-sm text-secondary">
-                                                {{ __('-') }}
-                                            </a>
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+                @foreach ($basketProducts as $basketProduct)
+                    <div class="col">
+                        <div class="card">
+                            <div class="card-header">{{ $basketProduct->product->product_title }}
+                                <aside>
+                                    <div class="d-flex flex-column flex-shrink-0">
+                                        <div class="row mb-0">
+                                            <form
+                                                action="{{ route('basketProducts.update', $basketProduct->product_id) }}"
+                                                method="POST">
+                                                @csrf
+                                                @method('PUT')
+                                                <button class="btn btn-primary bg-white shadow-sm text-secondary">
+                                                    {{ __('-') }}
+                                                </button>
+                                                <input type="hidden" id="count" name="count" value="-">
+                                            </form>
                                             {{ $basketProduct->quantity }}
-                                            <a href="{{ route('basketProducts.store', $basketProduct->product_id) }}"
-                                                class="btn btn-primary bg-white shadow-sm text-secondary">
-                                                {{ __('+') }}
-                                            </a> --}}
-                                            <button class="btn btn-primary">
-                                                {{ __('Удалить') }}
-                                            </button>
-                                        </form>
+                                            <form
+                                                action="{{ route('basketProducts.update', $basketProduct->product_id) }}"
+                                                method="POST">
+                                                @csrf
+                                                @method('PUT')
+                                                <button class="btn btn-primary bg-white shadow-sm text-secondary">
+                                                    {{ __('+') }}
+                                                </button>
+                                                <input type="hidden" id="count" name="count" value="+">
+                                            </form>
+                                        </div>
+                                        <div class="row mb-0">
+                                            <form
+                                                action="{{ route('basketProducts.destroy', $basketProduct->product_id) }}"
+                                                method="POST">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button class="btn btn-primary">
+                                                    {{ __('Удалить') }}
+                                                </button>
+                                            </form>
+                                        </div>
                                     </div>
-                                </div>
-                            </aside>
+                                </aside>
+                            </div>
+                            <div class="card-body">
+                                @if (session('status'))
+                                    <div class="alert alert-success" role="alert">
+                                        {{ session('status') }}
+                                    </div>
+                                @endif
+                                <img src="{{ asset($basketProduct->product->product_image ?? '') }}"
+                                    class="img-thumbnail" width="150px">
+                                <a
+                                    href="{{ route('products.show', $basketProduct->product->id ?? '') }}">{{ $basketProduct->product->description ?? '' }}</a>
+                                <ul class="list-unstyled mt-3 mb-4">
+                                    <li>
+                                        <h3><b>{{ $basketProduct->price }} ₽</b>
+                                        </h3>
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
-                        <div class="card-body">
-                            @if (session('status'))
-                                <div class="alert alert-success" role="alert">
-                                    {{ session('status') }}
-                                </div>
-                            @endif
-                            <img src="{{ asset($basketProduct->product->product_image ?? '') }}" class="img-thumbnail"
-                                width="150px">
-                            <a
-                                href="{{ route('products.show', $basketProduct->product->id ?? '') }}">{{ $basketProduct->product->description ?? '' }}</a>
-                            <ul class="list-unstyled mt-3 mb-4">
-                                <li>
-                                    <h3><b>{{ $basketProduct->price }} ₽</b>
-                                    </h3>
-                                </li>
-                            </ul>
-                        </div>
-                    @endforeach
-                </div>
+                    </div>
+                @endforeach
             </div>
         </div>
     </div>

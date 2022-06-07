@@ -2,12 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\State;
 use Illuminate\Http\Request;
-use App\Models\Category;
-use App\Models\Product;
-use Illuminate\Support\Facades\Validator;
 
-class CategoriesController extends Controller
+class StatesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,8 +14,8 @@ class CategoriesController extends Controller
      */
     public function index()
     {
-        $categories = Category::get();
-        return view('category', compact('categories'));
+        $states = State::get();
+        return view('states', compact('states'));
     }
 
     /**
@@ -39,16 +37,16 @@ class CategoriesController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'category_name' => ['required', 'string', 'max:50', 'unique:categories'],
+            'title' => ['required', 'string', 'max:50', 'unique:states'],
         ]);
-        $newCategories = Category::create([
-            'category_name' => $request->input('category_name'),
+        $newStates = State::create([
+            'title' => $request->input('title'),
         ]);
 
-        if ($newCategories) {
-            return redirect()->route('categories.index')->with('success', 'Заказ успешно оформлен');
+        if ($newStates) {
+            return redirect()->route('states.index')->with('success', 'Заказ успешно оформлен');
         } else {
-            return redirect()->route('categories.index');
+            return redirect()->route('states.index');
         }
     }
 
@@ -60,8 +58,7 @@ class CategoriesController extends Controller
      */
     public function show($id)
     {
-        $products = Product::where('category_id', $id)->get();
-        return view('product', compact('products'));
+        //
     }
 
     /**
@@ -95,7 +92,7 @@ class CategoriesController extends Controller
      */
     public function destroy($id)
     {
-        $delete = Category::where('id', $id)->delete();
-        return redirect()->route('categories.index')->with('success', 'Данные успешно удалены');
+        $delete = State::where('id', $id)->delete();
+        return redirect()->route('states.index')->with('success', 'Данные успешно удалены');
     }
 }

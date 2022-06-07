@@ -38,23 +38,23 @@ class SelectController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store($id)
+    public function store(Request $request)
     {
-        $select = Select::where('user_id', Auth::id())->where('product_id', $id)->get();
-        echo $select;
-        // if ($select == null) {
-        //     $newPositions = Select::create([
-        //         'user_id' => Auth::id(),
-        //         'product_id' => $id,
-        //     ]);
-        //     if ($newPositions) {
-        //         return redirect()->route('selects.index')->with('success', 'Данные успешно добавлены');
-        //     } else {
-        //         return redirect()->route('selects.index')->with('fail', 'Что-то пошло не так');
-        //     }
-        // } elseif ($select != null) {
-        //     return redirect()->route('selects.index')->with('success', 'Данные успешно добавлены');
-        // }
+        $select = Select::where('user_id', Auth::id())->where('product_id', $request->input('product_id'))->value('id');
+        // echo $select;
+        if ($select == null) {
+            $newPositions = Select::create([
+                'user_id' => Auth::id(),
+                'product_id' => $request->input('product_id'),
+            ]);
+            if ($newPositions) {
+                return redirect()->route('selects.index')->with('success', 'Данные успешно добавлены');
+            } else {
+                return redirect()->route('selects.index')->with('fail', 'Что-то пошло не так');
+            }
+        } elseif ($select != null) {
+            return redirect()->route('selects.index')->with('success', 'Данные успешно добавлены');
+        }
     }
 
     /**
@@ -99,6 +99,7 @@ class SelectController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $delete = Select::where('user_id', Auth::id())->where('product_id', $id)->delete();
+        return redirect()->route('selects.index')->with('success', 'Данные успешно удалены');
     }
 }

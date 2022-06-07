@@ -18,7 +18,6 @@
                 @foreach ($order_values as $order_value)
                     <div class="col">
                         <div class="card">
-
                             <div class="card-header">
                                 Заказ от
                                 {{ $order_value->order_datetime }}
@@ -47,5 +46,4 @@
             </div>
         </div>
     </div>
-
 @endcan

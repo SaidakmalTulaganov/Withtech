@@ -83,9 +83,12 @@
                                     <a href="{{ route('basketProducts.index') }}" class="dropdown-item">
                                         {{ __('Корзина') }}
                                     </a>
+                                    <a href="{{ route('selects.index') }}" class="dropdown-item">
+                                        {{ __('Избранное') }}
+                                    </a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                         onclick="event.preventDefault();
-                                                                                                                            document.getElementById('logout-form').submit();">
+                                                                                                                                document.getElementById('logout-form').submit();">
                                         {{ __('Выйти') }}
                                     </a>
 
@@ -125,20 +128,12 @@
                         Заказы
                     </a>
                 </li>
-                <li>
+                {{-- <li>
                     <a href="" class="nav-link px-2 text-secondary">
                         <svg class="bi me-2" width="16" height="16">
                             <use xlink:href="#table"></use>
                         </svg>
                         Доставка
-                    </a>
-                </li>
-                {{-- <li>
-                    <a href="{{ route('selects.index') }}" class="nav-link px-2 text-secondary">
-                        <svg class="bi me-2" width="16" height="16">
-                            <use xlink:href="#grid"></use>
-                        </svg>
-                        Избранное
                     </a>
                 </li> --}}
                 <li>
@@ -147,6 +142,14 @@
                             <use xlink:href="#grid"></use>
                         </svg>
                         Корзина
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ route('selects.index') }}" class="nav-link px-2 text-secondary">
+                        <svg class="bi me-2" width="16" height="16">
+                            <use xlink:href="#grid"></use>
+                        </svg>
+                        Избранное
                     </a>
                 </li>
             </ul>

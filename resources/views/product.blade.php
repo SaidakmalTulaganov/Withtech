@@ -104,13 +104,17 @@
                                     <input type="hidden" id="count" name="count" value="{{ $shipments->count }}">
                                     <input type="hidden" id="shipment_id" name="shipment_id" value="{{ $shipments->id }}">
                                 </form>
-                                    {{-- <div class="row mb-0">
+                                <form action="{{ route('selects.store') }}" method="POST">
+                                    @csrf
+                                    <div class="row mb-0">
                                         <div class="col-md-6 offset-md-4">
-                                            <a href="{{ route('selects.store', $products->id) }}" type="submit" class="btn btn-primary">
+                                            <button type="submit" class="btn btn-primary">
                                                 {{ __('В избранное') }}
-                                            </a>
+                                            </button>
                                         </div>
-                                    </div> --}}
+                                    </div>
+                                    <input type="hidden" id="product_id" name="product_id" value="{{ $products->id }}">
+                                </form>
                             </div>
                         </div>
                     </div>
