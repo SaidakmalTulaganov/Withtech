@@ -68,7 +68,7 @@ class ProductPageController extends Controller
             }
         } elseif ($type == 'Дробное число') {
             $request->validate([
-                'value' => ['required', 'decimal'],
+                'value' => ['required'],
             ]);
             $newCharacteristics = Characteristic::create([
                 'set_id' => $request->input('set_id'),

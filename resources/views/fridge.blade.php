@@ -180,7 +180,7 @@
                             $name_down = 2; ?>
                             по цене
                             <div class="col">
-                                <form action="{{ route('tvs.show', $price_up) }}" method="POST">
+                                <form action="{{ route('households.show', $price_up) }}" method="POST">
                                     @csrf
                                     @method('GET')
                                     <button class="btn btn-primary bg-white shadow-sm text-secondary">
@@ -190,7 +190,7 @@
                                 </form>
                             </div>
                             <div class="col">
-                                <form action="{{ route('tvs.show', $price_down) }}" method="POST">
+                                <form action="{{ route('households.show', $price_down) }}" method="POST">
                                     @csrf
                                     @method('GET')
                                     <button class="btn btn-primary bg-white shadow-sm text-secondary">
@@ -207,7 +207,7 @@
                         <div class="row mb-0">
                             по названию
                             <div class="col">
-                                <form action="{{ route('tvs.show', $name_up) }}" method="POST">
+                                <form action="{{ route('households.show', $name_up) }}" method="POST">
                                     @csrf
                                     @method('GET')
                                     <button class="btn btn-primary bg-white shadow-sm text-secondary">
@@ -217,7 +217,7 @@
                                 </form>
                             </div>
                             <div class="col">
-                                <form action="{{ route('tvs.show', $name_down) }}" method="POST">
+                                <form action="{{ route('households.show', $name_down) }}" method="POST">
                                     @csrf
                                     @method('GET')
                                     <button class="btn btn-primary bg-white shadow-sm text-secondary">

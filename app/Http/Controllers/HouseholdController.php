@@ -22,7 +22,7 @@ class HouseholdController extends Controller
         $shipments = DB::table('shipments')
             ->leftJoin('products', 'shipments.product_id', '=', 'products.id')->where('products.category_id', $category_id)
             ->get();
-        return view('home', compact('shipments'));
+        return view('fridge', compact('shipments'));
     }
 
     /**
@@ -54,7 +54,37 @@ class HouseholdController extends Controller
      */
     public function show($id)
     {
-        //
+        // echo $id;
+        $category_id = Category::where('category_name', 'Холодильники')->value('id');
+        if ($id == 1) {
+            $shipments = DB::table('shipments')
+                ->leftJoin('products', 'shipments.product_id', '=', 'products.id')->where('products.category_id', $category_id)
+                ->orderBy('selling_price', 'asc')
+                ->get();
+            // echo $shipments;
+            return view('fridge', compact('shipments'));
+        } elseif ($id == 0) {
+            $shipments = DB::table('shipments')
+                ->leftJoin('products', 'shipments.product_id', '=', 'products.id')->where('products.category_id', $category_id)
+                ->orderBy('selling_price', 'desc')
+                ->get();
+            // echo $shipments;
+            return view('fridge', compact('shipments'));
+        } elseif ($id == 2) {
+            $shipments = DB::table('shipments')
+                ->leftJoin('products', 'shipments.product_id', '=', 'products.id')->where('products.category_id', $category_id)
+                ->orderBy('product_title', 'desc')
+                ->get();
+            // echo $shipments;
+            return view('fridge', compact('shipments'));
+        } elseif ($id == 3) {
+            $shipments = DB::table('shipments')
+                ->leftJoin('products', 'shipments.product_id', '=', 'products.id')->where('products.category_id', $category_id)
+                ->orderBy('product_title', 'asc')
+                ->get();
+            // echo $shipments;
+            return view('fridge', compact('shipments'));
+        }
     }
 
     /**

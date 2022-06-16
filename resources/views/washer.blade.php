@@ -1,5 +1,5 @@
-@extends('layouts.admin')
-@section('content')
+@can('admin')
+    @include('layouts.admin')
     <style>
         aside {
             /* width: 280px; */
@@ -48,7 +48,6 @@
             color: #000000;
             cursor: default;
         }
-
     </style>
     <div class="container">
         <div class="row justify-content-center">
@@ -144,4 +143,118 @@
             </div>
         </div>
     </div>
-@endsection
+@endcan
+@can('client')
+    @include('layouts.app')
+    <style>
+        aside {
+            /* width: 280px; */
+            float: right;
+        }
+
+        article {
+            margin-right: 240px;
+            display: block;
+        }
+    </style>
+    {{-- <aside>
+        <div class="d-flex flex-column flex-shrink-0 p-3 bg-white shadow-sm">
+            <div class="row mb-0">
+                <h3><b>Итого: {{ $price }} ₽</b>
+                </h3>
+                <a href="{{ route('home.show', $product->id) }}" class="btn btn-primary">
+                    {{ __('по цене') }}
+                </a>
+            </div>
+        </div>
+    </aside> --}}
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-5 g-3">
+                <div class="col">
+                    <div class="d-flex flex-column flex-shrink-0 p-3 bg-white shadow-sm">
+                        <div class="row mb-0">
+                            <?php $price_up = 1;
+                            $price_down = 0;
+                            $name_up = 3;
+                            $name_down = 2; ?>
+                            по цене
+                            <div class="col">
+                                <form action="{{ route('washingmachines.show', $price_up) }}" method="POST">
+                                    @csrf
+                                    @method('GET')
+                                    <button class="btn btn-primary bg-white shadow-sm text-secondary">
+                                        &#9650;
+                                    </button>
+                                    {{-- <input type="hidden" id="count" name="count" value="1"> --}}
+                                </form>
+                            </div>
+                            <div class="col">
+                                <form action="{{ route('washingmachines.show', $price_down) }}" method="POST">
+                                    @csrf
+                                    @method('GET')
+                                    <button class="btn btn-primary bg-white shadow-sm text-secondary">
+                                        &#9660;
+                                    </button>
+                                    {{-- <input type="hidden" id="count" name="count" value="0"> --}}
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="d-flex flex-column flex-shrink-0 p-3 bg-white shadow-sm">
+                        <div class="row mb-0">
+                            по названию
+                            <div class="col">
+                                <form action="{{ route('washingmachines.show', $name_up) }}" method="POST">
+                                    @csrf
+                                    @method('GET')
+                                    <button class="btn btn-primary bg-white shadow-sm text-secondary">
+                                        &#9650;
+                                    </button>
+                                    {{-- <input type="hidden" id="count" name="count" value="1"> --}}
+                                </form>
+                            </div>
+                            <div class="col">
+                                <form action="{{ route('washingmachines.show', $name_down) }}" method="POST">
+                                    @csrf
+                                    @method('GET')
+                                    <button class="btn btn-primary bg-white shadow-sm text-secondary">
+                                        &#9660;
+                                    </button>
+                                    {{-- <input type="hidden" id="count" name="count" value="0"> --}}
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-5 g-3">
+                @foreach ($shipments as $shipment)
+                    <div class="col">
+                        <div class="card">
+                            <div class="card-header">{{ $shipment->product_title }}</div>
+                            <div class="card-body">
+                                @if (session('status'))
+                                    <div class="alert alert-success" role="alert">
+                                        {{ session('status') }}
+                                    </div>
+                                @endif
+                                <div>
+                                    <img src="{{ asset($shipment->product_image) }}" height="300">
+                                </div>
+                                <a href="{{ route('products.show', $shipment->id) }}">{{ $shipment->description }}</a>
+                                <ul class="list-unstyled mt-3 mb-4">
+                                    <li>
+                                        <h3><b>{{ $shipment->selling_price }} ₽</b></h3>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+        </div>
+    </div>
+@endcan

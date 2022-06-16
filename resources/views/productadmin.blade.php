@@ -142,12 +142,12 @@
                     </div>
                 </div>
             </form>
-            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-5 g-3">
                 @foreach ($shipments as $shipment)
                     <div class="col">
                         <div class="card">
                             <div class="card-header">{{ $shipment->product->product_title }}
-                                <aside>
+                                {{-- <aside>
                                     <div class="d-flex flex-column flex-shrink-0">
                                         <div class="row mb-0">
                                             <form action="{{ route('productsadmin.destroy', $shipment->product_id) }}"
@@ -155,13 +155,13 @@
                                                 @csrf
                                                 @method('DELETE')
                                                 Осталось {{ $shipment->count }} шт.
-                                                {{-- <button class="btn btn-primary">
+                                                <button class="btn btn-primary">
                                                     {{ __('Задать характеристики') }}
-                                                </button> --}}
+                                                </button>
                                             </form>
                                         </div>
                                     </div>
-                                </aside>
+                                </aside> --}}
                             </div>
                             <div class="card-body" style="min-height: 45em">
                                 @if (session('status'))
@@ -181,6 +181,9 @@
                                     </li>
                                     <li>
                                         <b>Процент бонуса: {{ $shipment->product->bonus_pencent }} %</b>
+                                    </li>
+                                    <li>
+                                        <b>Осталось: {{ $shipment->count }} шт.</b>
                                     </li>
                                 </ul>
                                 <ul class="list-unstyled mt-3 mb-4">
