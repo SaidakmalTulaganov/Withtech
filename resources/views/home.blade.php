@@ -59,3 +59,9 @@
 @can('accountant')
     @include('layouts.accountant')
 @endcan
+@can('storekeeper')
+    @include('layouts.storekeeper')
+@endcan
+@can('courier')
+    @include('layouts.courier')
+@endcan

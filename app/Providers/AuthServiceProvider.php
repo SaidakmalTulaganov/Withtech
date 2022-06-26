@@ -45,6 +45,10 @@ class AuthServiceProvider extends ServiceProvider
             return $user->type_id == 5;
         });
 
+        Gate::define('courier', function ($user) {
+            return $user->type_id == 6;
+        });
+
         // Gate::allows('client');
     }
 }

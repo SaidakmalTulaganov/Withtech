@@ -25,6 +25,7 @@ use App\Http\Controllers\ClientController;
 use App\Http\Controllers\OrderAdminController;
 use App\Http\Controllers\SelectController;
 use App\Http\Controllers\StatesController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -148,4 +149,8 @@ Route::resources([
 
 Route::resources([
     'states' => StatesController::class,
+]);
+
+Route::resources([
+    'users' => UserController::class,
 ]);

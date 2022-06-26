@@ -47,28 +47,4 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-
-    public function getIsAdminAttribute()
-    {
-
-        return $this->type_id == 1;
-    }
-
-    public function getIsUserAttribute()
-    {
-
-        return $this->type_id == 2;
-    }
-
-    public function getIsStorekeeperAttribute()
-    {
-
-        return $this->type_id == 3;
-    }
-
-    public function getIsDirectorAttribute()
-    {
-
-        return $this->type_id == 4;
-    }
 }

@@ -33,7 +33,7 @@
                     </a> --}}
 
                     <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-                        <li><a href="/home" class="nav-link px-2 text-secondary">WITHTECH АДМИНИСТРАТОР</a></li>
+                        <li><a href="/home" class="nav-link px-2 text-secondary">WITHTECH КЛАДОВЩИК</a></li>
                         {{-- <li><a href="{{ route('basketProducts.index') }}"
                                 class="nav-link px-2 text-secondary">Корзина</a></li> --}}
                         {{-- <li><a href="/about" class="nav-link px-2 text-secondary">Контакты</a></li> --}}
@@ -76,12 +76,12 @@
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href=""
                                         onclick="event.preventDefault();
-                                                                                                        document.getElementById('').submit();">
+                                                                                                            document.getElementById('').submit();">
                                         {{ __('Мой профиль') }}
                                     </a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                         onclick="event.preventDefault();
-                                                                                                        document.getElementById('logout-form').submit();">
+                                                                                                            document.getElementById('logout-form').submit();">
                                         {{ __('Выйти') }}
                                     </a>
 
@@ -110,30 +110,6 @@
             <span class="fs-4">wadad</span>
         </a> --}}
         <ul class="nav nav-pills flex-column mb-auto">
-            <li class="nav-item">
-                <a href="{{ route('users.index') }}" class="nav-link px-2 text-secondary" aria-current="page">
-                    <svg class="bi me-2" width="16" height="16">
-                        <use xlink:href="#home"></use>
-                    </svg>
-                    Пользователи
-                </a>
-            </li>
-            <li class="nav-item">
-                <a href="{{ route('categories.index') }}" class="nav-link px-2 text-secondary" aria-current="page">
-                    <svg class="bi me-2" width="16" height="16">
-                        <use xlink:href="#home"></use>
-                    </svg>
-                    Категории товаров
-                </a>
-            </li>
-            <li>
-                <a href="{{ route('manufacturers.index') }}" class="nav-link px-2 text-secondary">
-                    <svg class="bi me-2" width="16" height="16">
-                        <use xlink:href="#speedometer2"></use>
-                    </svg>
-                    Прозводители товаров
-                </a>
-            </li>
             <li>
                 <a href="{{ route('suppliers.index') }}" class="nav-link px-2 text-secondary">
                     <svg class="bi me-2" width="16" height="16">
@@ -150,30 +126,14 @@
                     Партии товаров
                 </a>
             </li>
-            <li>
-                <a href="{{ route('featuresets.index') }}" class="nav-link px-2 text-secondary">
-                    <svg class="bi me-2" width="16" height="16">
-                        <use xlink:href="#table"></use>
-                    </svg>
-                    Наборы характеристик
-                </a>
-            </li>
-            <li>
+            {{-- <li>
                 <a href="{{ route('productsadmin.index') }}" class="nav-link px-2 text-secondary">
                     <svg class="bi me-2" width="16" height="16">
                         <use xlink:href="#table"></use>
                     </svg>
                     Данные о товарах
                 </a>
-            </li>
-            <li>
-                <a href="{{ route('states.index') }}" class="nav-link px-2 text-secondary">
-                    <svg class="bi me-2" width="16" height="16">
-                        <use xlink:href="#table"></use>
-                    </svg>
-                    Статусы
-                </a>
-            </li>
+            </li> --}}
             <li>
                 <a href="{{ route('ordersadmin.index') }}" class="nav-link px-2 text-secondary">
                     <svg class="bi me-2" width="16" height="16">
