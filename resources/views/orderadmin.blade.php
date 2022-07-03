@@ -10,7 +10,6 @@
             margin-right: 240px;
             display: block;
         }
-
     </style>
     <div class="container">
         <div class="row justify-content-center">
@@ -62,27 +61,31 @@
                                                 method="POST">
                                                 @csrf
                                                 @method('PUT')
-                                                <div class="">
-                                                    <select class="form-select" aria-label="Disabled select example"
-                                                        type="inputGroupSelect01" name="state_id">
-                                                        @foreach ($states as $state)
-                                                            <option name="state_id" value="{{ $state->id }}">
-                                                                {{ $state->title }}</option>
-                                                        @endforeach
-                                                    </select>
-                                                    @if ($errors->any())
-                                                        <div class="alert alert-danger">
-                                                            <ul>
-                                                                @foreach ($errors->all() as $error)
-                                                                    <li>{{ $error }}</li>
+                                                <div class="row row-cols-1 row-cols-sm-2 row-cols-md-2 g-3">
+                                                    <div class="col">
+                                                            <select class="form-select" aria-label="Disabled select example"
+                                                                type="inputGroupSelect01" name="state_id">
+                                                                @foreach ($states as $state)
+                                                                    <option name="state_id" value="{{ $state->id }}">
+                                                                        {{ $state->title }}</option>
                                                                 @endforeach
-                                                            </ul>
-                                                        </div>
-                                                    @endif
+                                                            </select>
+                                                            @if ($errors->any())
+                                                                <div class="alert alert-danger">
+                                                                    <ul>
+                                                                        @foreach ($errors->all() as $error)
+                                                                            <li>{{ $error }}</li>
+                                                                        @endforeach
+                                                                    </ul>
+                                                                </div>
+                                                            @endif
+                                                    </div>
+                                                    <div class="col">
+                                                        <button class="btn btn-primary">
+                                                            {{ __('Редактировать') }}
+                                                        </button>
+                                                    </div>
                                                 </div>
-                                                <button class="btn btn-primary">
-                                                    {{ __('Редактировать') }}
-                                                </button>
                                             </form>
                                         </div>
                                     </div>
@@ -107,7 +110,6 @@
             margin-right: 240px;
             display: block;
         }
-
     </style>
     <div class="container">
         <div class="row justify-content-center">
@@ -128,7 +130,8 @@
                     <div class="col">
                         <div class="card">
                             <div class="card-header">
-                                <a href="{{ route('ordersadmin.show', $order_set->id) }}">Заказ № {{ $order_set->id }} от
+                                <a href="{{ route('ordersadmin.show', $order_set->id) }}">Заказ № {{ $order_set->id }}
+                                    от
                                     {{ $order_set->order_datetime }}</a>
                                 <aside>
                                     <div class="d-flex flex-column flex-shrink-0">
@@ -149,7 +152,8 @@
                                 @endif
                                 <ul class="list-unstyled mt-3 mb-4">
                                     <li>
-                                        <b>Покупатель: {{ $order_set->user->surname }} {{ $order_set->user->name }}</b>
+                                        <b>Покупатель: {{ $order_set->user->surname }}
+                                            {{ $order_set->user->name }}</b>
                                     </li>
                                     <li>
                                         <b>Адрес доставки: {{ $order_set->delivery_address }}</b>

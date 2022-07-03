@@ -42,7 +42,7 @@
                 </div>
             </div>
         </form>
-        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-3">
             @foreach ($states as $state)
                 <div class="col">
                     <div class="card">
