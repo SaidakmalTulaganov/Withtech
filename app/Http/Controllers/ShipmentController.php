@@ -17,12 +17,23 @@ class ShipmentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $shipments = Shipment::get();
-        $suppliers = Supplier::get();
-        $products = Product::get();
-        return view('shipment', compact('shipments', 'suppliers', 'products'));
+        // dd($request->input());
+        $supplier = $request->input('supplier');
+        if ($supplier != null) {
+            $supplier_id = Supplier::where('supplier_title', $supplier)->value('id');
+            // echo $supplier_id;
+            $shipments = Shipment::where('supplier_id', $supplier_id)->get();
+            $suppliers = Supplier::get();
+            $products = Product::get();
+            return view('shipment', compact('shipments', 'suppliers', 'products'));
+        } else {
+            $shipments = Shipment::get();
+            $suppliers = Supplier::get();
+            $products = Product::get();
+            return view('shipment', compact('shipments', 'suppliers', 'products'));
+        }
     }
 
     /**
@@ -43,25 +54,41 @@ class ShipmentController extends Controller
      */
     public function store(Request $request)
     {
-        //dd($request->input());
-        $request->validate([
-            'purchase_price' => ['required', 'integer'],
-            'selling_price' => ['required', 'integer'],
-            'count' => ['required', 'integer'],
-        ]);
-        $newShipments = Shipment::create([
-            'supplier_id' => $request->input('supplier_id'),
-            'product_id' => $request->input('product_id'),
-            'purchase_price' => $request->input('purchase_price'),
-            'selling_price' => $request->input('selling_price'),
-            'count' => $request->input('count'),
-            'datetime' => now(),
-        ]);
+        // dd($request->input());
+        $insert = $request->input('insert');
+        if ($insert == 'Поставщик') {
+            $request->validate([
+                'supplier_title' => ['required', 'string', 'max:50', 'unique:suppliers'],
+            ]);
+            $newSuppliers = Supplier::create([
+                'supplier_title' => $request->input('supplier_title'),
+            ]);
 
-        if ($newShipments) {
-            return redirect()->route('shipments.index')->with('success', 'Заказ успешно оформлен');
-        } else {
-            return redirect()->route('shipments.index');
+            if ($newSuppliers) {
+                return redirect()->route('shipments.index')->with('success', 'Заказ успешно оформлен');
+            } else {
+                return redirect()->route('shipments.index');
+            }
+        } elseif ($insert == 'Партия') {
+            $request->validate([
+                'purchase_price' => ['required', 'integer'],
+                'selling_price' => ['required', 'integer'],
+                'count' => ['required', 'integer'],
+            ]);
+            $newShipments = Shipment::create([
+                'supplier_id' => $request->input('supplier_id'),
+                'product_id' => $request->input('product_id'),
+                'purchase_price' => $request->input('purchase_price'),
+                'selling_price' => $request->input('selling_price'),
+                'count' => $request->input('count'),
+                'datetime' => now(),
+            ]);
+
+            if ($newShipments) {
+                return redirect()->route('shipments.index')->with('success', 'Заказ успешно оформлен');
+            } else {
+                return redirect()->route('shipments.index');
+            }
         }
     }
 
@@ -105,16 +132,23 @@ class ShipmentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
-        $delete = Shipment::where('id', $id)->delete();
-        return redirect()->route('shipments.index')->with('success', 'Данные успешно удалены');
+        $delete = $request->input('delete');
+        if ($delete == 'Удалить поставщика') {
+            $delete_shipment = Shipment::where('supplier_id', $id)->delete();
+            $delete_supplier = Supplier::where('id', $id)->delete();
+            return redirect()->route('shipments.index')->with('success', 'Данные успешно удалены');
+        } elseif ($delete == 'Удалить партию') {
+            $delete_shipment = Shipment::where('id', $id)->delete();
+            return redirect()->route('shipments.index')->with('success', 'Данные успешно удалены');
+        }
     }
 
     public function export(Request $request)
     {
         // dd($request->input());
-        $file_name = 'Отчет по партиям за '.now()->toDateString().'.xlsx';
+        $file_name = 'Отчет по партиям за ' . now()->toDateString() . '.xlsx';
         // echo $file_name;
         return Excel::download(new ShipmentsExport, $file_name);
     }

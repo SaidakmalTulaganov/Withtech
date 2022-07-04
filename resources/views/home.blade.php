@@ -65,3 +65,6 @@
 @can('courier')
     @include('layouts.courier')
 @endcan
+@can('director')
+    @include('layouts.director')
+@endcan

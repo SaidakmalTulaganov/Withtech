@@ -165,6 +165,7 @@ class UserController extends Controller
         // dd($request->input());
         $delete = $request->input('delete');
         if ($delete == 'Удалить тип') {
+            $delete_user = User::where('type_id', $id)->delete();
             $delete_type = UserType::where('id', $id)->delete();
             return redirect()->route('users.index')->with('success', 'Данные успешно удалены');
         }

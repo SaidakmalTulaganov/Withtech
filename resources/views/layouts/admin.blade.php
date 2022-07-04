@@ -74,11 +74,11 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href=""
+                                    {{-- <a class="dropdown-item" href=""
                                         onclick="event.preventDefault();
                                                                                                         document.getElementById('').submit();">
                                         {{ __('Мой профиль') }}
-                                    </a>
+                                    </a> --}}
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                         onclick="event.preventDefault();
                                                                                                         document.getElementById('logout-form').submit();">
@@ -134,14 +134,14 @@
                     Прозводители товаров
                 </a>
             </li>
-            <li>
+            {{-- <li>
                 <a href="{{ route('suppliers.index') }}" class="nav-link px-2 text-secondary">
                     <svg class="bi me-2" width="16" height="16">
                         <use xlink:href="#table"></use>
                     </svg>
                     Поставщики
                 </a>
-            </li>
+            </li> --}}
             <li>
                 <a href="{{ route('shipments.index') }}" class="nav-link px-2 text-secondary">
                     <svg class="bi me-2" width="16" height="16">
@@ -166,14 +166,14 @@
                     Данные о товарах
                 </a>
             </li>
-            <li>
+            {{-- <li>
                 <a href="{{ route('states.index') }}" class="nav-link px-2 text-secondary">
                     <svg class="bi me-2" width="16" height="16">
                         <use xlink:href="#table"></use>
                     </svg>
                     Статусы
                 </a>
-            </li>
+            </li> --}}
             <li>
                 <a href="{{ route('ordersadmin.index') }}" class="nav-link px-2 text-secondary">
                     <svg class="bi me-2" width="16" height="16">

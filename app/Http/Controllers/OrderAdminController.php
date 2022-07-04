@@ -17,12 +17,23 @@ class OrderAdminController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $order_sets = OrderSet::get();
-        $order_values = OrderValue::get();
-        $states = State::get();
-        return view('orderadmin', compact('order_sets', 'order_values', 'states'));
+        // dd($request->input());
+        $state = $request->input('state');
+        if ($state != null) {
+            $state_id = State::where('title', $state)->value('id');
+            // echo $state_id;
+            $order_sets = OrderSet::where('state_id', $state_id)->get();
+            $order_values = OrderValue::get();
+            $states = State::get();
+            return view('orderadmin', compact('order_sets', 'order_values', 'states'));
+        } else {
+            $order_sets = OrderSet::get();
+            $order_values = OrderValue::get();
+            $states = State::get();
+            return view('orderadmin', compact('order_sets', 'order_values', 'states'));
+        }
     }
 
     /**
@@ -43,7 +54,18 @@ class OrderAdminController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'title' => ['required', 'string', 'max:50', 'unique:states'],
+        ]);
+        $newStates = State::create([
+            'title' => $request->input('title'),
+        ]);
+
+        if ($newStates) {
+            return redirect()->route('ordersadmin.index')->with('success', 'Заказ успешно оформлен');
+        } else {
+            return redirect()->route('ordersadmin.index');
+        }
     }
 
     /**
@@ -97,13 +119,14 @@ class OrderAdminController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $delete = State::where('id', $id)->delete();
+        return redirect()->route('ordersadmin.index')->with('success', 'Данные успешно удалены');
     }
 
     public function export(Request $request)
     {
         // dd($request->input());
-        $file_name = 'Отчет по заказам за '.now()->toDateString().'.xlsx';
+        $file_name = 'Отчет по заказам за ' . now()->toDateString() . '.xlsx';
         // echo $file_name;
         return Excel::download(new OrdersAdminExport, $file_name);
     }

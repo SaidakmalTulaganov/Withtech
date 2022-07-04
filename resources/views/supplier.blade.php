@@ -14,7 +14,6 @@
     </style>
     <div class="container">
         <div class="row justify-content-center">
-            {{-- <div class="col-md-8"> --}}
             <form method="POST" action="{{ route('suppliers.store') }}">
                 @csrf
                 <div class="row mb-3">
@@ -49,7 +48,6 @@
                     <div class="col">
                         <div class="card">
                             <div class="card-header">{{ $supplier->supplier_title }}
-                                {{-- <a href="{{ route('categories.show', $supplier->id) }}">{{ $supplier->supplier_title }}</a> --}}
                                 <aside>
                                     <div class="d-flex flex-column flex-shrink-0">
                                         <div class="row mb-0">
@@ -75,7 +73,6 @@
                     </div>
                 @endforeach
             </div>
-            {{-- </div> --}}
         </div>
     </div>
 @endcan

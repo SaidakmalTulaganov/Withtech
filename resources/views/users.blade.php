@@ -50,8 +50,7 @@
                     @foreach ($users_types as $users_type)
                         <div class="col">
                             <div class="card">
-                                <div class="card-header"><a
-                                        href="{{ route('users.show', $users_type->id) }}">{{ $users_type->type_title }}</a>
+                                <div class="card-header">{{ $users_type->type_title }}
                                     <aside>
                                         <div class="d-flex flex-column flex-shrink-0">
                                             <div class="row mb-0">

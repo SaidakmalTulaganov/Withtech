@@ -33,7 +33,7 @@
                     </a> --}}
 
                     <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-                        <li><a href="/home" class="nav-link px-2 text-secondary">WITHTECH БУХГАЛТЕР</a></li>
+                        <li><a href="/home" class="nav-link px-2 text-secondary">WITHTECH ДИРЕКТОР</a></li>
                         {{-- <li><a href="{{ route('basketProducts.index') }}"
                                 class="nav-link px-2 text-secondary">Корзина</a></li> --}}
                         {{-- <li><a href="/about" class="nav-link px-2 text-secondary">Контакты</a></li> --}}
